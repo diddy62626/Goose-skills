@@ -101,6 +101,6 @@ resources (memory needs none — scope exit frees it).
 
 ## Related skills
 
-- [expressions-if-match](expressions-if-match/skill.md)
-- [loops](loops/skill.md)
-- [return-from](../errors/return-from/skill.md)
+- [expressions-if-match](../expressions-if-match/skill.md)
+- [loops](../loops/skill.md)
+- [return-from](../../errors/return-from/skill.md)

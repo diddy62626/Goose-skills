@@ -95,6 +95,6 @@ last time before the shrink, move the shrink, or move the declaration.
 
 ## Related skills
 
-- [const-writability](const-writability/skill.md)
-- [slices](../arrays/slices/skill.md)
-- [reading-errors](../idioms/reading-errors/skill.md)
+- [const-writability](../const-writability/skill.md)
+- [slices](../../arrays/slices/skill.md)
+- [reading-errors](../../idioms/reading-errors/skill.md)

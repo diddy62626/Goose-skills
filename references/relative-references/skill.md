@@ -133,7 +133,7 @@ plain `(Mark..&)[>..]` at 8 bytes per entry.
 
 ## Related skills
 
-- [linked-structures](../data-modeling/linked-structures/skill.md)
-- [serialization](../data-modeling/serialization/skill.md)
-- [slot-slice-pools](../data-modeling/slot-slice-pools/skill.md)
-- [references-and-ufcs](references-and-ufcs/skill.md)
+- [linked-structures](../../data-modeling/linked-structures/skill.md)
+- [serialization](../../data-modeling/serialization/skill.md)
+- [slot-slice-pools](../../data-modeling/slot-slice-pools/skill.md)
+- [references-and-ufcs](../references-and-ufcs/skill.md)

@@ -112,6 +112,6 @@ contained. Files opened through `extern fn` stay open.
 
 ## Related skills
 
-- [typed-queues](typed-queues/skill.md)
-- [worker-recipes](worker-recipes/skill.md)
-- [size-classes-and-placement](../memory-model/size-classes-and-placement/skill.md)
+- [typed-queues](../typed-queues/skill.md)
+- [worker-recipes](../worker-recipes/skill.md)
+- [size-classes-and-placement](../../memory-model/size-classes-and-placement/skill.md)

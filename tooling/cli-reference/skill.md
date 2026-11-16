@@ -122,6 +122,6 @@ there is no C compiler.
 
 ## Related skills
 
-- [run-build-backends](run-build-backends/skill.md)
-- [diagnostics](diagnostics/skill.md)
-- [editors-lsp-format](editors-lsp-format/skill.md)
+- [run-build-backends](../run-build-backends/skill.md)
+- [diagnostics](../diagnostics/skill.md)
+- [editors-lsp-format](../editors-lsp-format/skill.md)

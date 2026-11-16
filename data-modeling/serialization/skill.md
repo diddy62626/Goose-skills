@@ -85,6 +85,6 @@ write_file(path, head); append_file(path, payload);
 
 ## Related skills
 
-- [relative-references](../references/relative-references/skill.md)
-- [slot-slice-pools](slot-slice-pools/skill.md)
-- [binary-base64](../stdlib/binary-base64/skill.md)
+- [relative-references](../../references/relative-references/skill.md)
+- [slot-slice-pools](../slot-slice-pools/skill.md)
+- [binary-base64](../../stdlib/binary-base64/skill.md)

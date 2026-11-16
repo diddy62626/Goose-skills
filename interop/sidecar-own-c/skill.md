@@ -126,6 +126,6 @@ targets) and changes rebuild them all.
 
 ## Related skills
 
-- [packages](../tooling/packages/skill.md)
-- [making-a-package](../tooling/making-a-package/skill.md)
-- [extern-fn](extern-fn/skill.md)
+- [packages](../../tooling/packages/skill.md)
+- [making-a-package](../../tooling/making-a-package/skill.md)
+- [extern-fn](../extern-fn/skill.md)

@@ -105,6 +105,6 @@ call, freed all at once at the driver's scope exit.
 
 ## Related skills
 
-- [nested-functions](nested-functions/skill.md)
-- [grow-shrink-stacks-queues](../arrays/grow-shrink-stacks-queues/skill.md)
-- [pattern-catalog](../idioms/pattern-catalog/skill.md)
+- [nested-functions](../nested-functions/skill.md)
+- [grow-shrink-stacks-queues](../../arrays/grow-shrink-stacks-queues/skill.md)
+- [pattern-catalog](../../idioms/pattern-catalog/skill.md)

@@ -96,6 +96,6 @@ overrides them per platform. Mapping a name no block declares is an error.
 
 ## Related skills
 
-- [extern-fn](extern-fn/skill.md)
-- [sidecar-own-c](sidecar-own-c/skill.md)
-- [os-module](../stdlib/os-module/skill.md)
+- [extern-fn](../extern-fn/skill.md)
+- [sidecar-own-c](../sidecar-own-c/skill.md)
+- [os-module](../../stdlib/os-module/skill.md)

@@ -98,6 +98,6 @@ more.
 
 ## Related skills
 
-- [syntax-tour](../getting-started/syntax-tour/skill.md) — the language in one pass
-- [data-stacks-and-ownership](../memory-model/data-stacks-and-ownership/skill.md) — the memory model in depth
-- [limitations](../ecosystem/limitations/skill.md) — full v1 omission list
+- [syntax-tour](../../getting-started/syntax-tour/skill.md) — the language in one pass
+- [data-stacks-and-ownership](../../memory-model/data-stacks-and-ownership/skill.md) — the memory model in depth
+- [limitations](../../ecosystem/limitations/skill.md) — full v1 omission list

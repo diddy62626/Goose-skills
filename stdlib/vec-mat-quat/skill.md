@@ -101,6 +101,6 @@ rotation when fed back to `from_euler` (glm's do not at yaw ±π/2).
 
 ## Related skills
 
-- [math-module](math-module/skill.md)
-- [scalars-and-arithmetic](../types/scalars-and-arithmetic/skill.md)
-- [gfx module](../interop/extern-lib-and-ffi/skill.md)
+- [math-module](../math-module/skill.md)
+- [scalars-and-arithmetic](../../types/scalars-and-arithmetic/skill.md)
+- [gfx module](../../interop/extern-lib-and-ffi/skill.md)

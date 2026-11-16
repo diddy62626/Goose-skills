@@ -88,6 +88,6 @@ extern-lib-and-ffi.
 
 ## Related skills
 
-- [extern-fn](extern-fn/skill.md)
-- [extern-lib-and-ffi](extern-lib-and-ffi/skill.md)
-- [run-build-backends](../tooling/run-build-backends/skill.md)
+- [extern-fn](../extern-fn/skill.md)
+- [extern-lib-and-ffi](../extern-lib-and-ffi/skill.md)
+- [run-build-backends](../../tooling/run-build-backends/skill.md)

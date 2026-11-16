@@ -86,6 +86,6 @@ language.
 
 ## Related skills
 
-- [strings-as-byte-arrays](strings-as-byte-arrays/skill.md)
-- [parsing-text](parsing-text/skill.md)
-- [structs](../types/structs/skill.md)
+- [strings-as-byte-arrays](../strings-as-byte-arrays/skill.md)
+- [parsing-text](../parsing-text/skill.md)
+- [structs](../../types/structs/skill.md)

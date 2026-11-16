@@ -127,6 +127,6 @@ are built once and walked.
 
 ## Related skills
 
-- [casts-and-conversions](casts-and-conversions/skill.md)
-- [aliases-and-named-constants](aliases-and-named-constants/skill.md)
-- [common-pitfalls](../idioms/common-pitfalls/skill.md)
+- [casts-and-conversions](../casts-and-conversions/skill.md)
+- [aliases-and-named-constants](../aliases-and-named-constants/skill.md)
+- [common-pitfalls](../../idioms/common-pitfalls/skill.md)

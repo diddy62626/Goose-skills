@@ -90,6 +90,6 @@ the links point into (`nodes.push(linked(nodes[0], 2))` is fine;
 
 ## Related skills
 
-- [copies-and-aliasing](copies-and-aliasing/skill.md)
-- [relative-references](../references/relative-references/skill.md)
-- [strings-as-byte-arrays](../strings/strings-as-byte-arrays/skill.md)
+- [copies-and-aliasing](../copies-and-aliasing/skill.md)
+- [relative-references](../../references/relative-references/skill.md)
+- [strings-as-byte-arrays](../../strings/strings-as-byte-arrays/skill.md)

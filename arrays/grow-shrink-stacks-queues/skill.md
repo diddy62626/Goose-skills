@@ -91,7 +91,7 @@ recursive fn walk(scratch: i64[>..<]&, depth: i64) -> i64 {
 
 ## Related skills
 
-- [array-family-overview](array-family-overview/skill.md)
-- [grow-only-resizable](grow-only-resizable/skill.md)
-- [recursion](../functions/recursion/skill.md)
-- [std-algorithms](../stdlib/std-algorithms/skill.md)
+- [array-family-overview](../array-family-overview/skill.md)
+- [grow-only-resizable](../grow-only-resizable/skill.md)
+- [recursion](../../functions/recursion/skill.md)
+- [std-algorithms](../../stdlib/std-algorithms/skill.md)

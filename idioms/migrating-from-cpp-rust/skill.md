@@ -104,6 +104,6 @@ plus data (which can then be saved to disk or sent to a worker).
 
 ## Related skills
 
-- [common-pitfalls](common-pitfalls/skill.md)
-- [pattern-catalog](pattern-catalog/skill.md)
-- [linked-structures](../data-modeling/linked-structures/skill.md)
+- [common-pitfalls](../common-pitfalls/skill.md)
+- [pattern-catalog](../pattern-catalog/skill.md)
+- [linked-structures](../../data-modeling/linked-structures/skill.md)

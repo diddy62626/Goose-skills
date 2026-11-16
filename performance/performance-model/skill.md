@@ -76,7 +76,7 @@ which result applies to your application. Empty-process floor ~13 ms.
 
 ## Related skills
 
-- [bounds-check-elimination](bounds-check-elimination/skill.md)
-- [inline-nested-data](../data-modeling/inline-nested-data/skill.md)
-- [enums-adts](../types/enums-adts/skill.md)
-- [benchmarking](benchmarking/skill.md)
+- [bounds-check-elimination](../bounds-check-elimination/skill.md)
+- [inline-nested-data](../../data-modeling/inline-nested-data/skill.md)
+- [enums-adts](../../types/enums-adts/skill.md)
+- [benchmarking](../benchmarking/skill.md)

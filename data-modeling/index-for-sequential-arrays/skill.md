@@ -77,6 +77,6 @@ fields), leaving the compact array untouched.
 
 ## Related skills
 
-- [relative-references](../references/relative-references/skill.md)
-- [inline-nested-data](inline-nested-data/skill.md)
-- [fixed-limited-frozen-arrays](../arrays/fixed-limited-frozen-arrays/skill.md)
+- [relative-references](../../references/relative-references/skill.md)
+- [inline-nested-data](../inline-nested-data/skill.md)
+- [fixed-limited-frozen-arrays](../../arrays/fixed-limited-frozen-arrays/skill.md)

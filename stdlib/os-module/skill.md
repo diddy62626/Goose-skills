@@ -109,6 +109,6 @@ commits it again.
 
 ## Related skills
 
-- [error-idioms](../errors/error-idioms/skill.md)
-- [serialization](../data-modeling/serialization/skill.md)
-- [extern-fn](../interop/extern-fn/skill.md)
+- [error-idioms](../../errors/error-idioms/skill.md)
+- [serialization](../../data-modeling/serialization/skill.md)
+- [extern-fn](../../interop/extern-fn/skill.md)

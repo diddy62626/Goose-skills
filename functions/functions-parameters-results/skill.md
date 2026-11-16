@@ -99,6 +99,6 @@ function's locals as free variables (see nested-functions).
 
 ## Related skills
 
-- [generics](generics/skill.md)
-- [function-values-blocks](function-values-blocks/skill.md)
-- [in-place-construction](../memory-model/in-place-construction/skill.md)
+- [generics](../generics/skill.md)
+- [function-values-blocks](../function-values-blocks/skill.md)
+- [in-place-construction](../../memory-model/in-place-construction/skill.md)

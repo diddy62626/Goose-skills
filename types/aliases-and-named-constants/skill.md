@@ -76,5 +76,5 @@ scalars-and-arithmetic).
 
 ## Related skills
 
-- [scalars-and-arithmetic](scalars-and-arithmetic/skill.md)
-- [index-types](../data-modeling/index-types/skill.md)
+- [scalars-and-arithmetic](../scalars-and-arithmetic/skill.md)
+- [index-types](../../data-modeling/index-types/skill.md)

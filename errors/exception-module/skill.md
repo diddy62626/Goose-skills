@@ -86,6 +86,6 @@ callbacks: `exception::try<u8[]>(load) { error => ... };` — or
 
 ## Related skills
 
-- [return-from](return-from/skill.md)
-- [error-idioms](error-idioms/skill.md)
-- [guard-block-defer](../control-flow/guard-block-defer/skill.md)
+- [return-from](../return-from/skill.md)
+- [error-idioms](../error-idioms/skill.md)
+- [guard-block-defer](../../control-flow/guard-block-defer/skill.md)

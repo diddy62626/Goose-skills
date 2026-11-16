@@ -89,6 +89,6 @@ reference; there is no way to write through one without narrowing.
 
 ## Related skills
 
-- [references-and-ufcs](references-and-ufcs/skill.md)
-- [error-idioms](../errors/error-idioms/skill.md)
-- [relative-references](relative-references/skill.md)
+- [references-and-ufcs](../references-and-ufcs/skill.md)
+- [error-idioms](../../errors/error-idioms/skill.md)
+- [relative-references](../relative-references/skill.md)

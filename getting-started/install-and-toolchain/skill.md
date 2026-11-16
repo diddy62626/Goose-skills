@@ -100,6 +100,6 @@ compile error); `build`/`check`/`fetch` are 0/1; `format --check` is 0/1/2.
 
 ## Related skills
 
-- [cli-reference](../tooling/cli-reference/skill.md) — every command and option
-- [run-build-backends](../tooling/run-build-backends/skill.md) — JIT vs build, debug builds
-- [packages](../tooling/packages/skill.md) — using git packages
+- [cli-reference](../../tooling/cli-reference/skill.md) — every command and option
+- [run-build-backends](../../tooling/run-build-backends/skill.md) — JIT vs build, debug builds
+- [packages](../../tooling/packages/skill.md) — using git packages

@@ -83,6 +83,6 @@ behavior in more than one place or want a name for it.
 
 ## Related skills
 
-- [recursion](recursion/skill.md)
-- [function-values-blocks](function-values-blocks/skill.md)
-- [pattern-catalog](../idioms/pattern-catalog/skill.md)
+- [recursion](../recursion/skill.md)
+- [function-values-blocks](../function-values-blocks/skill.md)
+- [pattern-catalog](../../idioms/pattern-catalog/skill.md)

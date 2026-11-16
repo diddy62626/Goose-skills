@@ -97,6 +97,6 @@ pass `-D` to every compile. See docs/testing.md for the full contract.
 
 ## Related skills
 
-- [run-build-backends](run-build-backends/skill.md)
-- [error-idioms](../errors/error-idioms/skill.md)
-- [cli-reference](cli-reference/skill.md)
+- [run-build-backends](../run-build-backends/skill.md)
+- [error-idioms](../../errors/error-idioms/skill.md)
+- [cli-reference](../cli-reference/skill.md)

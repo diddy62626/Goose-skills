@@ -92,6 +92,6 @@ program's exit code.
 
 ## Related skills
 
-- [cli-reference](cli-reference/skill.md)
-- [export-to-c](../interop/export-to-c/skill.md)
-- [debugging](debugging/skill.md)
+- [cli-reference](../cli-reference/skill.md)
+- [export-to-c](../../interop/export-to-c/skill.md)
+- [debugging](../testing-debugging/skill.md)

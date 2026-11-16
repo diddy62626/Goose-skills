@@ -93,7 +93,7 @@ See the interop skills.
 
 ## Related skills
 
-- [simd-and-inline](../performance/simd-and-inline/skill.md)
-- [bounds-check-elimination](../performance/bounds-check-elimination/skill.md)
-- [index-types](../data-modeling/index-types/skill.md)
-- [extern-fn](../interop/extern-fn/skill.md)
+- [simd-and-inline](../../performance/simd-and-inline/skill.md)
+- [bounds-check-elimination](../../performance/bounds-check-elimination/skill.md)
+- [index-types](../../data-modeling/index-types/skill.md)
+- [extern-fn](../../interop/extern-fn/skill.md)

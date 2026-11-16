@@ -66,5 +66,5 @@ loader), `index_types`, `const_for`, `namespaces`, `owning_dynamic_data`
 
 ## Related skills
 
-- [what-is-goose](../getting-started/what-is-goose/skill.md)
-- [limitations](limitations/skill.md)
+- [what-is-goose](../../getting-started/what-is-goose/skill.md)
+- [limitations](../limitations/skill.md)

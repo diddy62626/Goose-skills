@@ -111,7 +111,7 @@ fewer arguments than the callee has parameters, where the rest have defaults.
 
 ## Related skills
 
-- [generics](generics/skill.md)
-- [nested-functions](nested-functions/skill.md)
-- [enums-adts](../types/enums-adts/skill.md)
-- [std-algorithms](../stdlib/std-algorithms/skill.md)
+- [generics](../generics/skill.md)
+- [nested-functions](../nested-functions/skill.md)
+- [enums-adts](../../types/enums-adts/skill.md)
+- [std-algorithms](../../stdlib/std-algorithms/skill.md)

@@ -97,7 +97,7 @@ be compact and free of the one-per-stack rule, copy into a `T[]`:
 
 ## Related skills
 
-- [grow-only-resizable](grow-only-resizable/skill.md)
-- [grow-shrink-stacks-queues](grow-shrink-stacks-queues/skill.md)
-- [fixed-limited-frozen-arrays](fixed-limited-frozen-arrays/skill.md)
-- [slices](slices/skill.md)
+- [grow-only-resizable](../grow-only-resizable/skill.md)
+- [grow-shrink-stacks-queues](../grow-shrink-stacks-queues/skill.md)
+- [fixed-limited-frozen-arrays](../fixed-limited-frozen-arrays/skill.md)
+- [slices](../slices/skill.md)

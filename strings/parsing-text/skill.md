@@ -107,6 +107,6 @@ knows the payload size.
 
 ## Related skills
 
-- [strings-as-byte-arrays](strings-as-byte-arrays/skill.md)
-- [slices](../arrays/slices/skill.md)
-- [std-algorithms](../stdlib/std-algorithms/skill.md)
+- [strings-as-byte-arrays](../strings-as-byte-arrays/skill.md)
+- [slices](../../arrays/slices/skill.md)
+- [std-algorithms](../../stdlib/std-algorithms/skill.md)

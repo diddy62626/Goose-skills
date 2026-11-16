@@ -97,7 +97,7 @@ struct Hdr { magic: u8[4], pad, size: u32, let kind: u8, const name: u8[..8] }
 
 ## Related skills
 
-- [data-stacks-and-ownership](data-stacks-and-ownership/skill.md)
-- [root-structs](../data-modeling/root-structs/skill.md)
-- [inline-nested-data](../data-modeling/inline-nested-data/skill.md)
-- [common-pitfalls](../idioms/common-pitfalls/skill.md)
+- [data-stacks-and-ownership](../data-stacks-and-ownership/skill.md)
+- [root-structs](../../data-modeling/root-structs/skill.md)
+- [inline-nested-data](../../data-modeling/inline-nested-data/skill.md)
+- [common-pitfalls](../../idioms/common-pitfalls/skill.md)

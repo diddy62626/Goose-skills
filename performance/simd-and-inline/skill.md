@@ -63,6 +63,6 @@ level except `-O0` (where Goose inlines nothing).
 
 ## Related skills
 
-- [function-qualifiers](../functions/function-qualifiers/skill.md)
-- [math-module](../stdlib/math-module/skill.md)
-- [bounds-check-elimination](bounds-check-elimination/skill.md)
+- [function-qualifiers](../../functions/function-qualifiers/skill.md)
+- [math-module](../../stdlib/math-module/skill.md)
+- [bounds-check-elimination](../bounds-check-elimination/skill.md)

@@ -93,6 +93,6 @@ Append single bytes with `push`; compare bytes with integer operators.
 
 ## Related skills
 
-- [formatting-text](formatting-text/skill.md)
-- [parsing-text](parsing-text/skill.md)
-- [slices](../arrays/slices/skill.md)
+- [formatting-text](../formatting-text/skill.md)
+- [parsing-text](../parsing-text/skill.md)
+- [slices](../../arrays/slices/skill.md)

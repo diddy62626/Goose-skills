@@ -108,6 +108,6 @@ fn read_items(text: u8[:]) -> Item[>..] {
 
 ## Related skills
 
-- [csv-regex](csv-regex/skill.md)
-- [error-idioms](../errors/error-idioms/skill.md)
-- [parsing-text](../strings/parsing-text/skill.md)
+- [csv-regex](../csv-regex/skill.md)
+- [error-idioms](../../errors/error-idioms/skill.md)
+- [parsing-text](../../strings/parsing-text/skill.md)

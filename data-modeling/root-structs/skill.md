@@ -95,6 +95,6 @@ the replacement for the deprecated `reusable` builtins.
 
 ## Related skills
 
-- [size-classes-and-placement](../memory-model/size-classes-and-placement/skill.md)
-- [slot-slice-pools](slot-slice-pools/skill.md)
-- [recursion](../functions/recursion/skill.md)
+- [size-classes-and-placement](../../memory-model/size-classes-and-placement/skill.md)
+- [slot-slice-pools](../slot-slice-pools/skill.md)
+- [recursion](../../functions/recursion/skill.md)

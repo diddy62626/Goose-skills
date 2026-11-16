@@ -92,6 +92,6 @@ float widths equally, so libm calls must name one: `sqrt(n as f64)`.
 
 ## Related skills
 
-- [scalars-and-arithmetic](scalars-and-arithmetic/skill.md)
-- [index-types](../data-modeling/index-types/skill.md)
-- [bounds-check-elimination](../performance/bounds-check-elimination/skill.md)
+- [scalars-and-arithmetic](../scalars-and-arithmetic/skill.md)
+- [index-types](../../data-modeling/index-types/skill.md)
+- [bounds-check-elimination](../../performance/bounds-check-elimination/skill.md)

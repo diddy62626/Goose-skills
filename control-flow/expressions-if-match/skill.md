@@ -101,6 +101,6 @@ An unknown recursive call is conservatively assumed to return.
 
 ## Related skills
 
-- [guard-block-defer](guard-block-defer/skill.md)
-- [enums-adts](../types/enums-adts/skill.md)
-- [error-idioms](../errors/error-idioms/skill.md)
+- [guard-block-defer](../guard-block-defer/skill.md)
+- [enums-adts](../../types/enums-adts/skill.md)
+- [error-idioms](../../errors/error-idioms/skill.md)

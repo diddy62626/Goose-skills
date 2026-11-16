@@ -93,6 +93,6 @@ version expresses trust in that code.
 
 ## Related skills
 
-- [making-a-package](making-a-package/skill.md)
-- [sidecar-own-c](../interop/sidecar-own-c/skill.md)
-- [cli-reference](cli-reference/skill.md)
+- [making-a-package](../making-a-package/skill.md)
+- [sidecar-own-c](../../interop/sidecar-own-c/skill.md)
+- [cli-reference](../cli-reference/skill.md)

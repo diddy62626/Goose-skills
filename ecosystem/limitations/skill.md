@@ -75,6 +75,6 @@ Read a proposal as design thinking, not a feature promise.
 
 ## Related skills
 
-- [what-is-goose](../getting-started/what-is-goose/skill.md)
-- [common-pitfalls](../idioms/common-pitfalls/skill.md)
-- [recursion](../functions/recursion/skill.md)
+- [what-is-goose](../../getting-started/what-is-goose/skill.md)
+- [common-pitfalls](../../idioms/common-pitfalls/skill.md)
+- [recursion](../../functions/recursion/skill.md)

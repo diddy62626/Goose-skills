@@ -94,6 +94,6 @@ if err.len > 0 { print(err); }
 
 ## Related skills
 
-- [parsing-text](../strings/parsing-text/skill.md)
-- [dictionary](dictionary/skill.md)
-- [json](json/skill.md)
+- [parsing-text](../../strings/parsing-text/skill.md)
+- [dictionary](../dictionary/skill.md)
+- [json](../json/skill.md)

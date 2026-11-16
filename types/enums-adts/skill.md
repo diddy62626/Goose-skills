@@ -131,7 +131,7 @@ reflection.
 
 ## Related skills
 
-- [structs](structs/skill.md)
-- [const-for-reflection](../control-flow/const-for-reflection/skill.md)
-- [linked-structures](../data-modeling/linked-structures/skill.md)
-- [migrating-from-cpp-rust](../idioms/migrating-from-cpp-rust/skill.md)
+- [structs](../structs/skill.md)
+- [const-for-reflection](../../control-flow/const-for-reflection/skill.md)
+- [linked-structures](../../data-modeling/linked-structures/skill.md)
+- [migrating-from-cpp-rust](../../idioms/migrating-from-cpp-rust/skill.md)

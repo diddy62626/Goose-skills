@@ -90,6 +90,6 @@ one repo at the same ref is an error).
 
 ## Related skills
 
-- [packages](packages/skill.md)
-- [sidecar-own-c](../interop/sidecar-own-c/skill.md)
-- [std-algorithms](../stdlib/std-algorithms/skill.md)
+- [packages](../packages/skill.md)
+- [sidecar-own-c](../../interop/sidecar-own-c/skill.md)
+- [std-algorithms](../../stdlib/std-algorithms/skill.md)

@@ -111,6 +111,6 @@ order.
 
 ## Related skills
 
-- [size-classes-and-placement](size-classes-and-placement/skill.md)
-- [copies-and-aliasing](copies-and-aliasing/skill.md)
-- [slot-slice-pools](../data-modeling/slot-slice-pools/skill.md)
+- [size-classes-and-placement](../size-classes-and-placement/skill.md)
+- [copies-and-aliasing](../copies-and-aliasing/skill.md)
+- [slot-slice-pools](../../data-modeling/slot-slice-pools/skill.md)

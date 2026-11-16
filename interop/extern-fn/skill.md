@@ -80,6 +80,6 @@ variadic functions cannot be bound at all — they need a C shim).
 
 ## Related skills
 
-- [extern-lib-and-ffi](extern-lib-and-ffi/skill.md)
-- [sidecar-own-c](sidecar-own-c/skill.md)
-- [export-to-c](export-to-c/skill.md)
+- [extern-lib-and-ffi](../extern-lib-and-ffi/skill.md)
+- [sidecar-own-c](../sidecar-own-c/skill.md)
+- [export-to-c](../export-to-c/skill.md)

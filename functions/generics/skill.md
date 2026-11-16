@@ -90,6 +90,6 @@ type argument is rejected).
 
 ## Related skills
 
-- [function-values-blocks](function-values-blocks/skill.md)
-- [const-for-reflection](../control-flow/const-for-reflection/skill.md)
-- [functions-parameters-results](functions-parameters-results/skill.md)
+- [function-values-blocks](../function-values-blocks/skill.md)
+- [const-for-reflection](../../control-flow/const-for-reflection/skill.md)
+- [functions-parameters-results](../functions-parameters-results/skill.md)

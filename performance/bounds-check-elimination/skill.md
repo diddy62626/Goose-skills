@@ -97,6 +97,6 @@ the failing line.
 
 ## Related skills
 
-- [index-types](../data-modeling/index-types/skill.md)
-- [function-qualifiers](../functions/function-qualifiers/skill.md)
-- [performance-model](performance-model/skill.md)
+- [index-types](../../data-modeling/index-types/skill.md)
+- [function-qualifiers](../../functions/function-qualifiers/skill.md)
+- [performance-model](../performance-model/skill.md)

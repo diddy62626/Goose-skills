@@ -90,6 +90,6 @@ rebuild its container. For mutable text in an indexed record use
 
 ## Related skills
 
-- [fixed-limited-frozen-arrays](../arrays/fixed-limited-frozen-arrays/skill.md)
-- [index-for-sequential-arrays](index-for-sequential-arrays/skill.md)
-- [structs](../types/structs/skill.md)
+- [fixed-limited-frozen-arrays](../../arrays/fixed-limited-frozen-arrays/skill.md)
+- [index-for-sequential-arrays](../index-for-sequential-arrays/skill.md)
+- [structs](../../types/structs/skill.md)

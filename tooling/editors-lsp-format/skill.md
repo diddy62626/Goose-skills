@@ -114,5 +114,5 @@ lines that change.
 
 ## Related skills
 
-- [cli-reference](cli-reference/skill.md)
-- [diagnostics](diagnostics/skill.md)
+- [cli-reference](../cli-reference/skill.md)
+- [diagnostics](../diagnostics/skill.md)

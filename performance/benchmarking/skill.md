@@ -81,6 +81,6 @@ explicitly marked in `bench/notes.md`.
 
 ## Related skills
 
-- [performance-model](performance-model/skill.md)
-- [bounds-check-elimination](bounds-check-elimination/skill.md)
-- [simd-and-inline](simd-and-inline/skill.md)
+- [performance-model](../performance-model/skill.md)
+- [bounds-check-elimination](../bounds-check-elimination/skill.md)
+- [simd-and-inline](../simd-and-inline/skill.md)

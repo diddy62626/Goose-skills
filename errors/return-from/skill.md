@@ -85,6 +85,6 @@ sample parsers use it for **every** syntax error, not just catastrophes.
 
 ## Related skills
 
-- [exception-module](exception-module/skill.md)
-- [guard-block-defer](../control-flow/guard-block-defer/skill.md)
-- [error-idioms](error-idioms/skill.md)
+- [exception-module](../exception-module/skill.md)
+- [guard-block-defer](../../control-flow/guard-block-defer/skill.md)
+- [error-idioms](../error-idioms/skill.md)

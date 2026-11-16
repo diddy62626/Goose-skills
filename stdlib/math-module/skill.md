@@ -73,6 +73,6 @@ Everything in `math` keeps no bounds check — callable from `checkfree` functio
 
 ## Related skills
 
-- [vec-mat-quat](vec-mat-quat/skill.md)
-- [function-qualifiers](../functions/function-qualifiers/skill.md)
-- [simd-and-inline](../performance/simd-and-inline/skill.md)
+- [vec-mat-quat](../vec-mat-quat/skill.md)
+- [function-qualifiers](../../functions/function-qualifiers/skill.md)
+- [simd-and-inline](../../performance/simd-and-inline/skill.md)

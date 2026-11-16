@@ -129,6 +129,6 @@ for saving by choosing self-relative over `in pool` links.
 
 ## Related skills
 
-- [linked-structures](../data-modeling/linked-structures/skill.md)
-- [recursion](../functions/recursion/skill.md)
-- [slot-slice-pools](../data-modeling/slot-slice-pools/skill.md)
+- [linked-structures](../../data-modeling/linked-structures/skill.md)
+- [recursion](../../functions/recursion/skill.md)
+- [slot-slice-pools](../../data-modeling/slot-slice-pools/skill.md)

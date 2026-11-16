@@ -124,7 +124,7 @@ the struct — it is built in place at the caller.
 
 ## Related skills
 
-- [enums-adts](enums-adts/skill.md)
-- [size-classes-and-placement](../memory-model/size-classes-and-placement/skill.md)
-- [root-structs](../data-modeling/root-structs/skill.md)
-- [inline-nested-data](../data-modeling/inline-nested-data/skill.md)
+- [enums-adts](../enums-adts/skill.md)
+- [size-classes-and-placement](../../memory-model/size-classes-and-placement/skill.md)
+- [root-structs](../../data-modeling/root-structs/skill.md)
+- [inline-nested-data](../../data-modeling/inline-nested-data/skill.md)

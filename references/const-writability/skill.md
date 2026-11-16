@@ -87,6 +87,6 @@ would be links the checker never proved.
 
 ## Related skills
 
-- [lifetimes-roots](lifetimes-roots/skill.md)
-- [dictionary](../stdlib/dictionary/skill.md)
-- [serialization](../data-modeling/serialization/skill.md)
+- [lifetimes-roots](../lifetimes-roots/skill.md)
+- [dictionary](../../stdlib/dictionary/skill.md)
+- [serialization](../../data-modeling/serialization/skill.md)

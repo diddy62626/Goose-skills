@@ -93,6 +93,6 @@ one copy that is always allowed of a value that holds self-relative links.
 
 ## Related skills
 
-- [in-place-construction](in-place-construction/skill.md)
-- [references-and-ufcs](../references/references-and-ufcs/skill.md)
-- [data-stacks-and-ownership](data-stacks-and-ownership/skill.md)
+- [in-place-construction](../in-place-construction/skill.md)
+- [references-and-ufcs](../../references/references-and-ufcs/skill.md)
+- [data-stacks-and-ownership](../data-stacks-and-ownership/skill.md)

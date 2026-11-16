@@ -151,7 +151,7 @@ Program arguments come from the `os` module: `args()`.
 
 ## Related skills
 
-- [scalars-and-arithmetic](../types/scalars-and-arithmetic/skill.md)
-- [expressions-if-match](../control-flow/expressions-if-match/skill.md)
-- [loops](../control-flow/loops/skill.md)
-- [functions-parameters-results](../functions/functions-parameters-results/skill.md)
+- [scalars-and-arithmetic](../../types/scalars-and-arithmetic/skill.md)
+- [expressions-if-match](../../control-flow/expressions-if-match/skill.md)
+- [loops](../../control-flow/loops/skill.md)
+- [functions-parameters-results](../../functions/functions-parameters-results/skill.md)

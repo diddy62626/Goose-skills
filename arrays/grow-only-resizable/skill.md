@@ -97,6 +97,6 @@ error — build in a variable and assign `copy()` of it).
 
 ## Related skills
 
-- [array-family-overview](array-family-overview/skill.md)
-- [grow-shrink-stacks-queues](grow-shrink-stacks-queues/skill.md)
-- [linked-structures](../data-modeling/linked-structures/skill.md)
+- [array-family-overview](../array-family-overview/skill.md)
+- [grow-shrink-stacks-queues](../grow-shrink-stacks-queues/skill.md)
+- [linked-structures](../../data-modeling/linked-structures/skill.md)

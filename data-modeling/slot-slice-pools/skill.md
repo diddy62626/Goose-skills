@@ -123,6 +123,6 @@ sample `32_pool_worker_snapshots`.
 
 ## Related skills
 
-- [root-structs](root-structs/skill.md)
-- [linked-structures](linked-structures/skill.md)
-- [concurrency-thread-model](../concurrency/thread-model/skill.md)
+- [root-structs](../root-structs/skill.md)
+- [linked-structures](../linked-structures/skill.md)
+- [concurrency-thread-model](../../concurrency/thread-model/skill.md)

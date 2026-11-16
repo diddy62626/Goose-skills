@@ -115,6 +115,6 @@ with a main-thread rule are a compile error when reachable from a
 
 ## Related skills
 
-- [typed-queues](typed-queues/skill.md)
-- [thread-model](thread-model/skill.md)
-- [slot-slice-pools](../data-modeling/slot-slice-pools/skill.md)
+- [typed-queues](../typed-queues/skill.md)
+- [thread-model](../thread-model/skill.md)
+- [slot-slice-pools](../../data-modeling/slot-slice-pools/skill.md)

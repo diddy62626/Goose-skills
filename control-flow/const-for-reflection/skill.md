@@ -107,6 +107,6 @@ over a field can write to it in one branch and leave it alone in the other.
 
 ## Related skills
 
-- [enums-adts](../types/enums-adts/skill.md)
-- [structs](../types/structs/skill.md)
-- [generics](../functions/generics/skill.md)
+- [enums-adts](../../types/enums-adts/skill.md)
+- [structs](../../types/structs/skill.md)
+- [generics](../../functions/generics/skill.md)

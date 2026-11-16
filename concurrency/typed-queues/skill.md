@@ -86,5 +86,5 @@ if got { handle(job); } else { idle_work(); }
 
 ## Related skills
 
-- [thread-model](thread-model/skill.md)
-- [worker-recipes](worker-recipes/skill.md)
+- [thread-model](../thread-model/skill.md)
+- [worker-recipes](../worker-recipes/skill.md)

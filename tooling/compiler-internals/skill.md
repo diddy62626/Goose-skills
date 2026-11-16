@@ -93,6 +93,6 @@ serialization, namespaces, packages, jit_backend, …), `docs/testing.md`
 
 ## Related skills
 
-- [cli-reference](cli-reference/skill.md)
-- [bounds-check-elimination](../performance/bounds-check-elimination/skill.md)
-- [diagnostics](diagnostics/skill.md)
+- [cli-reference](../cli-reference/skill.md)
+- [bounds-check-elimination](../../performance/bounds-check-elimination/skill.md)
+- [diagnostics](../diagnostics/skill.md)

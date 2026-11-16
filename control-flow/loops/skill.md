@@ -86,6 +86,6 @@ wraps to 0 — counts that must not wrap use `i64` (the default loop type).
 
 ## Related skills
 
-- [guard-block-defer](guard-block-defer/skill.md)
-- [function-values-blocks](../functions/function-values-blocks/skill.md)
-- [index-types](../data-modeling/index-types/skill.md)
+- [guard-block-defer](../guard-block-defer/skill.md)
+- [function-values-blocks](../../functions/function-values-blocks/skill.md)
+- [index-types](../../data-modeling/index-types/skill.md)

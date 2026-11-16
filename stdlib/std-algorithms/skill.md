@@ -123,6 +123,6 @@ rotl rotr byte_swap is_pow2 ilog2 isqrt gcd lcm swap` — all check-free
 
 ## Related skills
 
-- [dictionary](dictionary/skill.md)
-- [grow-shrink-stacks-queues](../arrays/grow-shrink-stacks-queues/skill.md)
-- [function-values-blocks](../functions/function-values-blocks/skill.md)
+- [dictionary](../dictionary/skill.md)
+- [grow-shrink-stacks-queues](../../arrays/grow-shrink-stacks-queues/skill.md)
+- [function-values-blocks](../../functions/function-values-blocks/skill.md)

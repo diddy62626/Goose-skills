@@ -100,6 +100,6 @@ The mistakes the tutorial and migration guide say everyone makes first.
 
 ## Related skills
 
-- [reading-errors](reading-errors/skill.md)
-- [migrating-from-cpp-rust](migrating-from-cpp-rust/skill.md)
-- [lifetimes-roots](../references/lifetimes-roots/skill.md)
+- [reading-errors](../reading-errors/skill.md)
+- [migrating-from-cpp-rust](../migrating-from-cpp-rust/skill.md)
+- [lifetimes-roots](../../references/lifetimes-roots/skill.md)

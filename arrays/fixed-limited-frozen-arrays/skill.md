@@ -94,7 +94,7 @@ fixes. No size parameters: `fn f<N>(a: i64[N])` is an error.
 
 ## Related skills
 
-- [array-family-overview](array-family-overview/skill.md)
-- [slices](slices/skill.md)
-- [inline-nested-data](../data-modeling/inline-nested-data/skill.md)
-- [index-for-sequential-arrays](index-for-sequential-arrays/skill.md)
+- [array-family-overview](../array-family-overview/skill.md)
+- [slices](../slices/skill.md)
+- [inline-nested-data](../../data-modeling/inline-nested-data/skill.md)
+- [index-for-sequential-arrays](../../data-modeling/index-for-sequential-arrays/skill.md)

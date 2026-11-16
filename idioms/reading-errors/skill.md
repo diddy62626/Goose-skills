@@ -97,6 +97,6 @@ argument or split the overload set.
 
 ## Related skills
 
-- [common-pitfalls](common-pitfalls/skill.md)
-- [lifetimes-roots](../references/lifetimes-roots/skill.md)
-- [diagnostics](../tooling/diagnostics/skill.md)
+- [common-pitfalls](../common-pitfalls/skill.md)
+- [lifetimes-roots](../../references/lifetimes-roots/skill.md)
+- [diagnostics](../../tooling/diagnostics/skill.md)

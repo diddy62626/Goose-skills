@@ -114,7 +114,7 @@ validated at construction, check-free traversal afterwards. CSR-style
 
 ## Related skills
 
-- [relative-references](../references/relative-references/skill.md)
-- [slot-slice-pools](slot-slice-pools/skill.md)
-- [index-types](index-types/skill.md)
-- [recursion](../functions/recursion/skill.md)
+- [relative-references](../../references/relative-references/skill.md)
+- [slot-slice-pools](../slot-slice-pools/skill.md)
+- [index-types](../index-types/skill.md)
+- [recursion](../../functions/recursion/skill.md)

@@ -87,6 +87,6 @@ function names the line of the program's code that called it.
 
 ## Related skills
 
-- [return-from](return-from/skill.md)
-- [exception-module](exception-module/skill.md)
-- [optionals-and-narrowing](../references/optionals-and-narrowing/skill.md)
+- [return-from](../return-from/skill.md)
+- [exception-module](../exception-module/skill.md)
+- [optionals-and-narrowing](../../references/optionals-and-narrowing/skill.md)

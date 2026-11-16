@@ -84,6 +84,6 @@ got measurably faster).
 
 ## Related skills
 
-- [function-qualifiers](../functions/function-qualifiers/skill.md)
-- [bounds-check-elimination](../performance/bounds-check-elimination/skill.md)
-- [linked-structures](linked-structures/skill.md)
+- [function-qualifiers](../../functions/function-qualifiers/skill.md)
+- [bounds-check-elimination](../../performance/bounds-check-elimination/skill.md)
+- [linked-structures](../linked-structures/skill.md)

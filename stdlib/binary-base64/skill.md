@@ -94,6 +94,6 @@ input returns `false` and leaves `out` unchanged. Both functions are
 
 ## Related skills
 
-- [serialization](../data-modeling/serialization/skill.md)
-- [json](json/skill.md)
-- [simd-and-inline](../performance/simd-and-inline/skill.md)
+- [serialization](../../data-modeling/serialization/skill.md)
+- [json](../json/skill.md)
+- [simd-and-inline](../../performance/simd-and-inline/skill.md)

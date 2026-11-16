@@ -93,6 +93,6 @@ var seen = dictionary<key, bool> {};
 
 ## Related skills
 
-- [std-algorithms](std-algorithms/skill.md)
-- [const-writability](../references/const-writability/skill.md)
-- [lifetimes-roots](../references/lifetimes-roots/skill.md)
+- [std-algorithms](../std-algorithms/skill.md)
+- [const-writability](../../references/const-writability/skill.md)
+- [lifetimes-roots](../../references/lifetimes-roots/skill.md)

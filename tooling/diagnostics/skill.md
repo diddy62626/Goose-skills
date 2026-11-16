@@ -96,6 +96,6 @@ stderr is a file/pipe/CI — which includes agents running commands;
 
 ## Related skills
 
-- [cli-reference](cli-reference/skill.md)
-- [reading-errors](../idioms/reading-errors/skill.md)
-- [bounds-check-elimination](../performance/bounds-check-elimination/skill.md)
+- [cli-reference](../cli-reference/skill.md)
+- [reading-errors](../../idioms/reading-errors/skill.md)
+- [bounds-check-elimination](../../performance/bounds-check-elimination/skill.md)

@@ -110,6 +110,6 @@ valid across pops (a stale one reads the slot's current value).
 
 ## Related skills
 
-- [optionals-and-narrowing](optionals-and-narrowing/skill.md)
-- [lifetimes-roots](lifetimes-roots/skill.md)
-- [relative-references](relative-references/skill.md)
+- [optionals-and-narrowing](../optionals-and-narrowing/skill.md)
+- [lifetimes-roots](../lifetimes-roots/skill.md)
+- [relative-references](../relative-references/skill.md)

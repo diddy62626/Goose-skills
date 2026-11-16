@@ -106,6 +106,6 @@ first (`let t = make(); let s = t[..];`).
 
 ## Related skills
 
-- [array-family-overview](array-family-overview/skill.md)
-- [lifetimes-roots](../references/lifetimes-roots/skill.md)
-- [parsing-text](../strings/parsing-text/skill.md)
+- [array-family-overview](../array-family-overview/skill.md)
+- [lifetimes-roots](../../references/lifetimes-roots/skill.md)
+- [parsing-text](../../strings/parsing-text/skill.md)
