@@ -1,0 +1,1975 @@
+{
+  "name": "Goose-skills",
+  "title": "Goose programming language skills for AI agents",
+  "language": "goose",
+  "version": "1.0.0",
+  "updated": "2026-11-16",
+  "description": "AI-agent skills for the Goose programming language (memory-safe systems language by aardappel): syntax, memory model, arrays, references, stdlib, concurrency, interop, tooling, performance and idioms. Grounded in the official docs.",
+  "format": "markdown with YAML frontmatter (name, title, category, tags, triggers, description, source)",
+  "load_pattern": "{category}/{skill}/skill.md",
+  "upstream": "https://github.com/aardappel/goose",
+  "skill_count": 78,
+  "categories": [
+    {
+      "category": "arrays",
+      "group": "Core concepts",
+      "description": "The array family: fixed/limited/frozen arrays, grow-only and grow-shrink resizables, slices.",
+      "skill_count": 5,
+      "skills": [
+        {
+          "name": "goose-array-family-overview",
+          "title": "The array family — eight kinds, one table, which to pick",
+          "path": "arrays/array-family-overview/skill.md",
+          "description": "> Goose has no single array type: T[k] fixed, T[] frozen, T[varint], T[..k]/T[..] limited (inline capacity), T[>..] grow-only resizable (the workhorse), T[>..<] grow-shrink. All store [metadata][elements...] inline, packed, never a pointer to a separate block. Members (.len/.cap/.push/...) and the decision guide.",
+          "tags": [
+            "goose",
+            "arrays",
+            "T[k]",
+            "resizable",
+            "growable",
+            "slices",
+            "metadata"
+          ],
+          "triggers": [
+            "goose array types",
+            "goose vector",
+            "T[>..]",
+            "T[>..<]",
+            "T[..k]",
+            "which array",
+            "array family"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#5-the-array-family"
+        },
+        {
+          "name": "goose-fixed-limited-frozen-arrays",
+          "title": "Fixed, limited and frozen arrays — T[k], T[..k], T[..], T[]",
+          "path": "arrays/fixed-limited-frozen-arrays/skill.md",
+          "description": "> Compile-time sizes (T[k]), inline-capacity arrays that live inside structs and array elements (T[..k], T[..]), and finished frozen data (T[], T[varint]). Fill literals, capacity semantics, sequential arrays, and compile-time size expressions.",
+          "tags": [
+            "goose",
+            "fixed array",
+            "limited array",
+            "frozen",
+            "inline capacity",
+            "fill literal",
+            "varint length"
+          ],
+          "triggers": [
+            "goose fixed array",
+            "T[..k]",
+            "inline capacity",
+            "small string",
+            "fill [0; n]",
+            "frozen array"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#the-array-family"
+        },
+        {
+          "name": "goose-grow-only-resizable",
+          "title": "Grow-only resizable arrays — T[>..], the default container",
+          "path": "arrays/grow-only-resizable/skill.md",
+          "description": "> T[>..] is Goose's workhorse container: push/append bump the stack, elements never move, references into it stay valid forever, and shrinks are allowed exactly where the compiler proves nothing points into it. Patterns for arenas, builders, scratch buffers, and the shrink rules.",
+          "tags": [
+            "goose",
+            "arena",
+            "builder",
+            "push",
+            "append",
+            "growable",
+            "references survive"
+          ],
+          "triggers": [
+            "goose growable array",
+            "T[>..]",
+            "arena",
+            "push returns reference",
+            "clear",
+            "resize down"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#grow-only-arrays-shrink-where-nothing-points-in"
+        },
+        {
+          "name": "goose-grow-shrink-stacks-queues",
+          "title": "Grow-shrink arrays — T[>..<] for stacks, queues and heaps",
+          "path": "arrays/grow-shrink-stacks-queues/skill.md",
+          "description": "> T[>..<] shrinks from anywhere but keeps its interior references out of storage (variables only). Pop/pop_n/resize/clear, the std heap functions, balanced calls that let a recursion share one scratch stack, and the reference rules that make shrink checks cheap.",
+          "tags": [
+            "goose",
+            "stack",
+            "queue",
+            "heap",
+            "pop",
+            "grow-shrink",
+            "priority queue"
+          ],
+          "triggers": [
+            "goose stack",
+            "goose queue",
+            "goose heap",
+            "T[>..<]",
+            "heap_push",
+            "heap_pop",
+            "pop"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#grow-shrink-arrays-keep-their-references-in-variables"
+        },
+        {
+          "name": "goose-slices",
+          "title": "Slices — T[:] views that cannot dangle",
+          "path": "arrays/slices/skill.md",
+          "description": "> T[:] is a reference plus a count (like span/string_view/&[T]) that every array kind converts to without copying. Slicing syntax including ^k from-the-end, coercion rules, checked roots (cannot outlive the owning variable, cannot survive a shrink), writability, and slices as dictionary keys.",
+          "tags": [
+            "goose",
+            "slice",
+            "span",
+            "view",
+            "substring",
+            "lifetime",
+            "checked"
+          ],
+          "triggers": [
+            "goose slice",
+            "T[:]",
+            "string_view equivalent",
+            "goose span",
+            "slice ranges",
+            "^k index"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#7-slices"
+        }
+      ]
+    },
+    {
+      "category": "concurrency",
+      "group": "Working with data",
+      "description": "Threads that share nothing: thread_fn, typed queues, worker recipes.",
+      "skill_count": 3,
+      "skills": [
+        {
+          "name": "goose-thread-model",
+          "title": "Threads — thread_fn workers that share nothing",
+          "path": "concurrency/thread-model/skill.md",
+          "description": "> Goose threads share nothing: a thread_fn is compiled as a SEPARATE program with its own data stacks and its own copies of the globals it uses. No locks, atomics or memory orderings exist. Values cross via typed queues of flat values (a memcpy). Threads need a real build (TinyCC cannot place thread-local storage).",
+          "tags": [
+            "goose",
+            "threads",
+            "thread_fn",
+            "no shared memory",
+            "workers",
+            "separate program"
+          ],
+          "triggers": [
+            "goose threads",
+            "thread_fn",
+            "worker thread",
+            "shared memory",
+            "no locks",
+            "parallel"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#22-threads"
+        },
+        {
+          "name": "goose-typed-queues",
+          "title": "Typed queues — qput/qget/qpoll/qlimit patterns",
+          "path": "concurrency/typed-queues/skill.md",
+          "description": "> One typed queue per value type, selected by the type. Blocking qget, polling qpoll, timeout qget<T>(ms), backpressure qlimit + qput returning false. Design patterns: quit sentinels, request/response with id fields, bounding queue memory.",
+          "tags": [
+            "goose",
+            "queues",
+            "qput",
+            "qget",
+            "qpoll",
+            "qlimit",
+            "message passing",
+            "backpressure"
+          ],
+          "triggers": [
+            "goose queue",
+            "qget",
+            "qput",
+            "qlimit",
+            "message queue",
+            "worker communication"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#22-threads"
+        },
+        {
+          "name": "goose-worker-recipes",
+          "title": "Worker recipes — parallel-for, fan-out/fan-in, contained supervision",
+          "path": "concurrency/worker-recipes/skill.md",
+          "description": "> Concrete worker patterns: parallel-for over a big array by chunking, fan-out/fan-in with results reassembled by id, per-worker quit sentinels, contained workers as supervised restartable tasks, and the snapshot recipe for giving workers their own copy of pool data.",
+          "tags": [
+            "goose",
+            "parallel for",
+            "fan out",
+            "fan in",
+            "worker pool",
+            "mandelbrot",
+            "supervision"
+          ],
+          "triggers": [
+            "goose parallel",
+            "parallel for",
+            "worker pool",
+            "fan out fan in",
+            "split work threads"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/tutorial.md#14-threads-that-share-nothing"
+        }
+      ]
+    },
+    {
+      "category": "control-flow",
+      "group": "Core concepts",
+      "description": "Expressions (if/match/block), guard, defer, loops, and const for/if reflection.",
+      "skill_count": 4,
+      "skills": [
+        {
+          "name": "goose-const-for-reflection",
+          "title": "const for / const if — specialization-time reflection",
+          "path": "control-flow/const-for-reflection/skill.md",
+          "description": "> const for expands a fragment once per entry of a compile-time sequence: a struct's fields (fields<T>), an enum's variants (variants<E>), a list of types (types<...>), or a list of constants. const if chooses fragments at specialization time with has_default<A> and same<T1,T2>. Goose's reflection, replacing derive macros.",
+          "tags": [
+            "goose",
+            "const for",
+            "reflection",
+            "fields",
+            "variants",
+            "types",
+            "has_default",
+            "same",
+            "metaprogramming"
+          ],
+          "triggers": [
+            "goose const for",
+            "iterate fields",
+            "variants<T>",
+            "compile time reflection",
+            "has_default",
+            "same type"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#const-for-expansion-at-specialization-time"
+        },
+        {
+          "name": "goose-expressions-if-match",
+          "title": "Expressions — if, match, block as values; branch type joining",
+          "path": "control-flow/expressions-if-match/skill.md",
+          "description": "> if, match, block and bare {} are expressions; a block's value is its trailing expression. Used as values, ifs need else, match needs full coverage. Literal branches adapt; slices join as slices; statements vs expressions and semicolon rules; functions that never return.",
+          "tags": [
+            "goose",
+            "if",
+            "match",
+            "expression-oriented",
+            "block value",
+            "literal adaptation"
+          ],
+          "triggers": [
+            "goose if expression",
+            "goose match",
+            "ternary",
+            "branch types",
+            "block value"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#16-expressions-and-control-flow"
+        },
+        {
+          "name": "goose-guard-block-defer",
+          "title": "guard, block-with-break, and defer",
+          "path": "control-flow/guard-block-defer/skill.md",
+          "description": "> guard states a condition the rest of its block depends on (and narrows optionals). block { } gives break a value target without a loop. defer runs on every exit of its block — end, break, continue, return, return from — latest first, once per iteration in loops, with its three restrictions.",
+          "tags": [
+            "goose",
+            "guard",
+            "defer",
+            "block",
+            "early exit",
+            "cleanup"
+          ],
+          "triggers": [
+            "goose guard",
+            "goose defer",
+            "early return",
+            "cleanup on exit",
+            "block break value"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#guard"
+        },
+        {
+          "name": "goose-loops",
+          "title": "Loops — for-in, while, loop, for &x mutation, index binding",
+          "path": "control-flow/loops/skill.md",
+          "description": "> for x in range_or_array with the full form catalog: typed loop variables, half-open ranges, by-value vs for-&x mutation, the x,i index pair, in-place traversal semantics (pushes extend the walk; no shrink inside), while and loop, no labels.",
+          "tags": [
+            "goose",
+            "for",
+            "while",
+            "loop",
+            "iteration",
+            "index",
+            "mutation"
+          ],
+          "triggers": [
+            "goose for loop",
+            "iterate array",
+            "for &x",
+            "index in loop",
+            "while",
+            "loop"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#loops"
+        }
+      ]
+    },
+    {
+      "category": "data-modeling",
+      "group": "Working with data",
+      "description": "Inline nested data, index types, linked structures, root structs, pools, serialization.",
+      "skill_count": 7,
+      "skills": [
+        {
+          "name": "goose-index-for-sequential-arrays",
+          "title": "Index for sequential arrays — random access into packed data",
+          "path": "data-modeling/index-for-sequential-arrays/skill.md",
+          "description": "> An array of variable-size elements can be walked but not indexed. Keep a second array of 4-byte links (in pool, global) or 8-byte plain references (local) beside it, pushed alongside each element, to reach any element in any order.",
+          "tags": [
+            "goose",
+            "index array",
+            "sequential",
+            "variable-size elements",
+            "references index"
+          ],
+          "triggers": [
+            "goose index array",
+            "random access packed",
+            "iterate but not index",
+            "index of references"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#an-index-for-a-sequential-array"
+        },
+        {
+          "name": "goose-index-types",
+          "title": "Index types — `u32 in nodes` and checkfree functions",
+          "path": "data-modeling/index-types/skill.md",
+          "description": "> An index type uN in a is an unsigned integer proven below a.len wherever observed; the check moves to where the index enters the program (x as NodeId aborts if out of range). Indexing a with its own index type needs no bounds check — the basis of checkfree graph traversal. Bound types (uN upto a) for range ends.",
+          "tags": [
+            "goose",
+            "index types",
+            "bounds check",
+            "checkfree",
+            "NodeId",
+            "graph",
+            "CSR"
+          ],
+          "triggers": [
+            "goose index type",
+            "u32 in array",
+            "NodeId",
+            "bounds check elided",
+            "checkfree",
+            "upto"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#15-index-types-and-checkfree-functions"
+        },
+        {
+          "name": "goose-inline-nested-data",
+          "title": "Inline nested data — varint records, byte counting, sequential trade-offs",
+          "path": "data-modeling/inline-nested-data/skill.md",
+          "description": "> Structs keep variable-size parts inline in declaration order; varint fields shrink integers to their value's length. A whole order book is one packed array of orders with no pointers. The 29-byte order worked example, when to use variable-size elements (walked data) vs fixed (indexed data).",
+          "tags": [
+            "goose",
+            "varint",
+            "nested data",
+            "inline",
+            "records",
+            "compact",
+            "sequential"
+          ],
+          "triggers": [
+            "goose varint",
+            "inline nested data",
+            "compact records",
+            "bytes per record",
+            "sequential array"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/tutorial.md#8-nested-data-stays-inline"
+        },
+        {
+          "name": "goose-linked-structures",
+          "title": "Linked structures — trees, lists, ASTs in pools with typed links",
+          "path": "data-modeling/linked-structures/skill.md",
+          "description": "> Where Rust uses Vec<Node> + u32 indices and C++ uses pointers, Goose puts nodes in one grow-only array and links them with typed (often narrow) references that survive growth. BST insert, doubly-linked list with a self sentinel, variable-mode enum ASTs at 23 bytes, and the recursion rules for walking them.",
+          "tags": [
+            "goose",
+            "tree",
+            "linked list",
+            "bst",
+            "ast",
+            "pool",
+            "links",
+            "sentinel"
+          ],
+          "triggers": [
+            "goose tree",
+            "linked list",
+            "binary search tree",
+            "expression tree",
+            "node pool",
+            "arena"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/tutorial.md#10-linking-things-without-pointers"
+        },
+        {
+          "name": "goose-root-structs",
+          "title": "Root structs — several independently growing fields under one owner",
+          "path": "data-modeling/root-structs/skill.md",
+          "description": "> An ordinary struct holds at most one resizable tail. A root struct lifts that: each field has independent storage, several fields grow separately, all share the owner's lifetime. Placement rules (local/global only), reference semantics, generic roots, and what roots cannot do (copy, serialize as a whole, live inside another struct).",
+          "tags": [
+            "goose",
+            "root struct",
+            "workspace",
+            "multiple arrays",
+            "owner",
+            "compiler state"
+          ],
+          "triggers": [
+            "goose root struct",
+            "struct multiple vectors",
+            "independently growing fields",
+            "root struct placement"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#root-structs"
+        },
+        {
+          "name": "goose-serialization",
+          "title": "Serialization — to_bytes / bytes_of / from_bytes, verified loading",
+          "path": "data-modeling/serialization/skill.md",
+          "description": "> Structures whose links are self-relative offsets are position-independent: saving is a write of bytes, loading a read — no serializer, no schema, no pointer fixup. from_bytes verifies framing, tags, lengths, canonical varints and every link before the bytes become a value; a hostile file gives false and an empty array, never a wild reference.",
+          "tags": [
+            "goose",
+            "serialization",
+            "to_bytes",
+            "from_bytes",
+            "bytes_of",
+            "save",
+            "load",
+            "verification"
+          ],
+          "triggers": [
+            "goose serialization",
+            "save load data",
+            "to_bytes",
+            "from_bytes",
+            "bytes_of",
+            "position independent"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#23-serialization"
+        },
+        {
+          "name": "goose-slot-slice-pools",
+          "title": "slot_pool and slice_pool — lifetimes that do not nest",
+          "path": "data-modeling/slot-slice-pools/skill.md",
+          "description": "> When data does not die in scope order (cache entries, graph nodes, open documents), the stdlib's slot_pool<T> hands out reusable slots and slice_pool<T> reusable contiguous runs. free releases no memory and ends no lifetime — every element stays a live, well-typed value; stale references read a replacement value, a logic bug like a stale index, never corruption.",
+          "tags": [
+            "goose",
+            "slot_pool",
+            "slice_pool",
+            "freelist",
+            "reuse",
+            "shared_ptr",
+            "object pool",
+            "slots"
+          ],
+          "triggers": [
+            "goose slot_pool",
+            "goose slice_pool",
+            "object pool",
+            "free list",
+            "non-nested lifetimes",
+            "alloc_ref",
+            "free"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/stdlib.md#slot_pool"
+        }
+      ]
+    },
+    {
+      "category": "ecosystem",
+      "group": "Ecosystem",
+      "description": "v1 limitations and scope, official resources and links.",
+      "skill_count": 2,
+      "skills": [
+        {
+          "name": "goose-limitations",
+          "title": "Limitations and v1 scope — what Goose does not have (yet)",
+          "path": "ecosystem/limitations/skill.md",
+          "description": "> The full v1 omission list: no move for resizables, no nested owning roots, no labeled break, no namespace privacy, no subprocesses or networking, no escaping closures/function pointers, whole-program compilation only, pool semantics, plus proposals on the roadmap (coroutines, wasm, child_threads, ownership, debugging) and how each limitation is worked with.",
+          "tags": [
+            "goose",
+            "limitations",
+            "v1",
+            "omissions",
+            "roadmap",
+            "wasm",
+            "coroutines"
+          ],
+          "triggers": [
+            "goose limitations",
+            "goose missing features",
+            "v1 omissions",
+            "goose roadmap",
+            "why not"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/tutorial.md#18-limitations"
+        },
+        {
+          "name": "goose-resources",
+          "title": "Resources — official docs, samples, community",
+          "path": "ecosystem/resources/skill.md",
+          "description": "> The authoritative links: the language docs (tutorial/reference/spec), the standard library reference, CLI and packages docs, the 31 samples in reading order, benchmarks, design notes, releases, and the Discord. What to read in what order when an agent needs to verify a detail.",
+          "tags": [
+            "goose",
+            "resources",
+            "docs",
+            "samples",
+            "community",
+            "discord",
+            "releases"
+          ],
+          "triggers": [
+            "goose documentation",
+            "goose samples",
+            "goose community",
+            "goose discord",
+            "goose links"
+          ],
+          "source": "https://github.com/aardappel/goose"
+        }
+      ]
+    },
+    {
+      "category": "errors",
+      "group": "Core concepts",
+      "description": "Error idioms, return … from, the exception module, asserts and aborts.",
+      "skill_count": 3,
+      "skills": [
+        {
+          "name": "goose-error-idioms",
+          "title": "Error idioms — trailing bool, T?, asserts, aborts, exits",
+          "path": "errors/error-idioms/skill.md",
+          "description": "> No Result type, no exceptions, no required convention: the application chooses. Two outcomes = trailing bool (-> T, bool); found-or-not = T? (a reference into the input, copies nothing); bugs/invariants = assert/ abort/exit, which never return and are uncatchable.",
+          "tags": [
+            "goose",
+            "errors",
+            "bool convention",
+            "optional",
+            "assert",
+            "abort",
+            "exit"
+          ],
+          "triggers": [
+            "goose error handling",
+            "parse_int ok",
+            "assert",
+            "abort",
+            "exit code",
+            "error convention"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#stopping-the-program"
+        },
+        {
+          "name": "goose-exception-module",
+          "title": "The exception module — typed try/throw",
+          "path": "errors/exception-module/skill.md",
+          "description": "> exception::try<E>(body) { error => ... } and exception::throw(value) package the return-from machinery as typed exceptions. E is fixed at try (u8[] for owned text, an int, or your own struct/enum). Ownership rules, recursion restrictions, and the defer-based finally.",
+          "tags": [
+            "goose",
+            "exception",
+            "try",
+            "throw",
+            "typed errors",
+            "finally"
+          ],
+          "triggers": [
+            "goose exception module",
+            "exception try",
+            "exception throw",
+            "typed error",
+            "finally"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/stdlib.md#exception"
+        },
+        {
+          "name": "goose-return-from",
+          "title": "`return … from` — lightweight checked exceptions without unwinding",
+          "path": "errors/return-from/skill.md",
+          "description": "> return E from f returns E as the result of the innermost active call of f, unwinding every frame in between — while every function in between keeps its plain signature. Statically checked (no uncaught case), implemented as a hidden discriminant (no unwind tables), and the error value is built directly at the target's destination.",
+          "tags": [
+            "goose",
+            "return from",
+            "errors",
+            "parser",
+            "unwinding",
+            "long-distance return"
+          ],
+          "triggers": [
+            "goose return from",
+            "error propagation",
+            "exceptions without unwinding",
+            "parser errors"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#return--from"
+        }
+      ]
+    },
+    {
+      "category": "functions",
+      "group": "Core concepts",
+      "description": "Functions, generics, function values and blocks, nested functions, recursion, qualifiers.",
+      "skill_count": 6,
+      "skills": [
+        {
+          "name": "goose-function-qualifiers",
+          "title": "Function qualifiers — inline, simd, checkfree, thread_fn, extern, export",
+          "path": "functions/function-qualifiers/skill.md",
+          "description": "> The qualifier vocabulary and their fixed order: export/extern first, then checkfree, simd, inline, recursive, and fn/thread_fn. What inline forces, what simd builds (per instruction-set level), what checkfree guarantees, and which combinations are forbidden.",
+          "tags": [
+            "goose",
+            "inline fn",
+            "simd fn",
+            "checkfree",
+            "thread_fn",
+            "extern fn",
+            "export fn",
+            "qualifiers"
+          ],
+          "triggers": [
+            "goose inline fn",
+            "simd function",
+            "checkfree fn",
+            "thread_fn",
+            "export fn",
+            "extern fn order"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#function-qualifiers"
+        },
+        {
+          "name": "goose-function-values-blocks",
+          "title": "Function values and trailing blocks — HOFs without closures",
+          "path": "functions/function-values-blocks/skill.md",
+          "description": "> Function values are compile-time entities passed as generic parameters — never runtime data, never stored or returned. A trailing block { ... } is the last argument (implicit it, or a, b =>). Blocks read/write enclosing locals, and a return inside a block returns from the LEXICALLY ENCLOSING function — a hand-written iterator has for's control power.",
+          "tags": [
+            "goose",
+            "higher-order functions",
+            "trailing block",
+            "it",
+            "lambda",
+            "callbacks",
+            "filter map"
+          ],
+          "triggers": [
+            "goose lambda",
+            "goose block",
+            "trailing block",
+            "it parameter",
+            "higher order function",
+            "callbacks"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#function-values"
+        },
+        {
+          "name": "goose-functions-parameters-results",
+          "title": "Functions — parameters, defaults, multiple results, overloading",
+          "path": "functions/functions-parameters-results/skill.md",
+          "description": "> Free functions with UFCS method syntax. Parameters are let bindings (var for reassignable); reference/slice/by-value parameter kinds; trailing default parameters evaluated per call; multiple results as a calling convention (-> A, B; let a, b = f()); overload resolution rules and order-independence; inferred result types and in-place returns.",
+          "tags": [
+            "goose",
+            "fn",
+            "parameters",
+            "defaults",
+            "multiple return values",
+            "overloading"
+          ],
+          "triggers": [
+            "goose function",
+            "fn syntax",
+            "default parameters",
+            "multiple returns",
+            "overload resolution"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#17-functions"
+        },
+        {
+          "name": "goose-generics",
+          "title": "Generics — untyped parameters, <T>, monomorphization, no trait bounds",
+          "path": "functions/generics/skill.md",
+          "description": "> An untyped parameter is generic; <T> says two parameters agree or names a type no parameter carries. Everything is monomorphized: a generic body is checked only at concrete instantiations, with the compile-time call chain reported. Type argument inference, explicit lists, literal parameters, floating context, and .='s move semantics in generic code.",
+          "tags": [
+            "goose",
+            "generics",
+            "monomorphization",
+            "type parameters",
+            "instantiation errors"
+          ],
+          "triggers": [
+            "goose generics",
+            "fn foo<T>",
+            "untyped parameter generic",
+            "type inference",
+            "monomorphized"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#18-generics-and-function-values"
+        },
+        {
+          "name": "goose-nested-functions",
+          "title": "Nested functions — shared-state parsers without context structs",
+          "path": "functions/nested-functions/skill.md",
+          "description": "> A fn declared inside a fn reads and writes the enclosing function's locals as free variables. Nested functions of one block may call each other in either order (recursive-descent parsers), overload like top-level ones, and are compile-time entities. When to nest vs pass a context struct.",
+          "tags": [
+            "goose",
+            "nested functions",
+            "closures",
+            "parser state",
+            "free variables"
+          ],
+          "triggers": [
+            "goose nested function",
+            "inner function",
+            "shared parser state",
+            "free variables"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#nested-functions"
+        },
+        {
+          "name": "goose-recursion",
+          "title": "Recursion — recursive fn, the growable-data rule, shared scratch",
+          "path": "functions/recursion/skill.md",
+          "description": "> Recursion is opt-in: mark the cycle's entry recursive fn, write out every signature in the cycle, and no function in the cycle may hold growable data across a call back into the cycle. Three workarounds: pass the accumulator in, scope the scratch to end before the call, share one grow-shrink stack truncated to a mark. Plus the detailed rules.",
+          "tags": [
+            "goose",
+            "recursion",
+            "recursive fn",
+            "tree walk",
+            "scratch stack",
+            "parser"
+          ],
+          "triggers": [
+            "goose recursion",
+            "recursive fn",
+            "recursive tree",
+            "growable data recursion",
+            "recursive descent"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#19-recursion"
+        }
+      ]
+    },
+    {
+      "category": "getting-started",
+      "group": "Start here",
+      "description": "What Goose is, installing it, and a syntax tour for people who know C/Rust/Go.",
+      "skill_count": 3,
+      "skills": [
+        {
+          "name": "goose-install-and-toolchain",
+          "title": "Installing Goose, the toolchain, and running your first program",
+          "path": "getting-started/install-and-toolchain/skill.md",
+          "description": "> Where to get the Goose compiler (releases page or build from source), what it needs (git, cmake, a C compiler), the one-executable design (compiler + runner + build tool + fetcher + formatter + LSP), GOOSE_HOME, and the first commands to try.",
+          "tags": [
+            "goose",
+            "install",
+            "toolchain",
+            "cli",
+            "build"
+          ],
+          "triggers": [
+            "install goose",
+            "goose compiler",
+            "goose build",
+            "goose run",
+            "goose toolchain",
+            "GOOSE_HOME"
+          ],
+          "source": "https://github.com/aardappel/goose#install-a-release"
+        },
+        {
+          "name": "goose-syntax-tour",
+          "title": "Goose syntax tour — the whole language in one pass",
+          "path": "getting-started/syntax-tour/skill.md",
+          "description": "> Compact tour of Goose syntax for people who know C/Rust/Go: let/var/const, types after the name, expression-oriented if/match/block, guard, defer, loops, multiple return values, default parameters, UFCS method-call syntax, the three arithmetic rules, and struct literals with `..`.",
+          "tags": [
+            "goose",
+            "syntax",
+            "basics",
+            "tutorial",
+            "variables",
+            "functions",
+            "control-flow"
+          ],
+          "triggers": [
+            "goose syntax",
+            "goose basics",
+            "goose let var",
+            "goose fn",
+            "goose for loop",
+            "goose match"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/tutorial.md"
+        },
+        {
+          "name": "goose-what-is-goose",
+          "title": "What Goose is, and when to reach for it",
+          "path": "getting-started/what-is-goose/skill.md",
+          "description": "> Goose is a memory-safe systems language with no heap allocator, garbage collector, or lifetime annotations. Data lives on compiler-managed data stacks freed at scope exit; values nest inline and never move. It compiles to C and benchmarks faster than idiomatic C++ and safe Rust while using less memory. AI models have little training data on it (first releases 2026), so treat this skill set as the primary knowledge source.",
+          "tags": [
+            "goose",
+            "overview",
+            "memory-model",
+            "systems-language",
+            "performance"
+          ],
+          "triggers": [
+            "what is goose",
+            "goose language",
+            "gooselang",
+            "goose-lang",
+            "memory safe systems language"
+          ],
+          "source": "https://github.com/aardappel/goose"
+        }
+      ]
+    },
+    {
+      "category": "idioms",
+      "group": "Idioms",
+      "description": "Migrating from C++/Rust, common pitfalls, reading errors, the pattern catalog.",
+      "skill_count": 4,
+      "skills": [
+        {
+          "name": "goose-common-pitfalls",
+          "title": "Common pitfalls — the gotchas that bite in the first afternoon",
+          "path": "idioms/common-pitfalls/skill.md",
+          "description": "> Every pitfall in one list: Euclidean %, width rules and u32+i32 errors, let vs const, for-copy vs for-&x, sequential arrays can't index, frozen variable fields, recursion growable-data rule, reference into temporary, dictionary reference liveness, string literal const, push inside print in recursive cycles, ++ is a statement, no if(n), tinycc limits.",
+          "tags": [
+            "goose",
+            "pitfalls",
+            "gotchas",
+            "mistakes",
+            "beginner errors"
+          ],
+          "triggers": [
+            "goose gotchas",
+            "goose pitfalls",
+            "common mistakes",
+            "why does not compile",
+            "goose errors beginner"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/tutorial.md#18-limitations"
+        },
+        {
+          "name": "goose-migrating-from-cpp-rust",
+          "title": "Migrating from C++ and Rust — pattern by pattern",
+          "path": "idioms/migrating-from-cpp-rust/skill.md",
+          "description": "> The translation table: new/Box::new → locals or push into an array; vector/Vec → T[>..]; string → u8 arrays; virtual functions → enums + case functions; traits → overloads/generics; shared_ptr → slot_pool; Result/? → trailing bool + return E from f; Arc<Mutex> → typed queues; serde → to_bytes; RAII → defer. Plus what does not translate and the nearest shape.",
+          "tags": [
+            "goose",
+            "migration",
+            "c++",
+            "rust",
+            "translation",
+            "patterns"
+          ],
+          "triggers": [
+            "migrate to goose",
+            "goose vs rust",
+            "goose vs c++",
+            "translate pattern",
+            "equivalent of vector"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/Goose%20for%20C%2B%2B%20and%20Rust%20Programmers%20Translating%20Common%20Patterns.md"
+        },
+        {
+          "name": "goose-pattern-catalog",
+          "title": "Pattern catalog — the idioms Goose code is written in",
+          "path": "idioms/pattern-catalog/skill.md",
+          "description": "> The recurring shapes: builder + push-reference linking, per-iteration scratch buffers, the context struct of references for recursion, nested function parsers, sentinel-based linked lists, enum-tag command tables, case functions as virtual calls, format/hash overloads as the trait replacements, index types for graphs, and pools for non-nesting lifetimes.",
+          "tags": [
+            "goose",
+            "patterns",
+            "idioms",
+            "context struct",
+            "sentinel",
+            "builder",
+            "command table",
+            "scratch buffer"
+          ],
+          "triggers": [
+            "goose idioms",
+            "goose patterns",
+            "context struct pattern",
+            "scratch buffer pattern",
+            "command table"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/tutorial.md"
+        },
+        {
+          "name": "goose-reading-errors",
+          "title": "Reading compiler errors — the two-ends rule",
+          "path": "idioms/reading-errors/skill.md",
+          "description": "> Goose errors name both ends of the problem. How to read lifetime errors (reference + binding site), shrink errors (holder + store site), generic errors (instantiation + call chain), overload errors (candidates + why each failed), and the decision each message is asking you to make.",
+          "tags": [
+            "goose",
+            "errors",
+            "debugging",
+            "lifetime errors",
+            "instantiation chain",
+            "overload errors"
+          ],
+          "triggers": [
+            "goose error message",
+            "lifetime error reading",
+            "instantiation chain",
+            "overload candidates"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#reading-the-errors"
+        }
+      ]
+    },
+    {
+      "category": "interop",
+      "group": "Working with data",
+      "description": "The C boundary in both directions: extern fn, extern \"lib\", export fn, sidecars and CMake.",
+      "skill_count": 4,
+      "skills": [
+        {
+          "name": "goose-export-to-c",
+          "title": "export fn — Goose as a library called from C",
+          "path": "interop/export-to-c/skill.md",
+          "description": "> export fn makes a Goose function callable from C; the compiler emits a C wrapper. Build with --standalone --header hello.h -o hello.c (or --shared for a .so/.dll); the host calls goose_init once (which runs Goose main), then the exports; goose_exit releases and allows reload. Slice results come back as pointer + length out-parameter.",
+          "tags": [
+            "goose",
+            "export fn",
+            "goose_init",
+            "header",
+            "shared library",
+            "embed goose"
+          ],
+          "triggers": [
+            "goose export fn",
+            "call goose from c",
+            "goose_init",
+            "goose header",
+            "shared library embed"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#export-fn"
+        },
+        {
+          "name": "goose-extern-fn",
+          "title": "extern fn — calling C from Goose",
+          "path": "interop/extern-fn/skill.md",
+          "description": "> extern fn binds a Goose signature to a C symbol with no body; the call compiles to a direct C call. What may cross: scalars, flat fixed-size values, T& pointers, T[:] as {data,len}, and u8[>..]& builders. What is rejected at the declaration. Where symbols resolve (JIT: math.h only; builds: your C and libraries).",
+          "tags": [
+            "goose",
+            "extern fn",
+            "c interop",
+            "ffi",
+            "bindings",
+            "cbrt",
+            "math.h"
+          ],
+          "triggers": [
+            "goose extern fn",
+            "call c",
+            "c function binding",
+            "extern declaration",
+            "ffi"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#extern-fn"
+        },
+        {
+          "name": "goose-extern-lib-and-ffi",
+          "title": "extern \"lib\" blocks and the ffi module — binding shared libraries by name",
+          "path": "interop/extern-lib-and-ffi/skill.md",
+          "description": "> extern \"SDL2\" { fn SDL_Init(flags: u32) -> i32; } opens a shared library at program start and binds the members called — no C to compile. Handles are u64, pointers to Goose-owned data are T&, structs cross packed, and ffi::cstr/bytes copy library-owned memory into Goose storage. Sidecar dylibs maps platform filenames.",
+          "tags": [
+            "goose",
+            "extern lib",
+            "shared library",
+            "dylib",
+            "SDL2",
+            "ffi",
+            "cstr",
+            "opaque handles"
+          ],
+          "triggers": [
+            "goose extern lib",
+            "bind dll",
+            "bind so",
+            "SDL2 goose",
+            "ffi cstr",
+            "opaque handle"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#extern-lib-blocks"
+        },
+        {
+          "name": "goose-sidecar-own-c",
+          "title": "Sidecar foo.build — a program or package with C of its own",
+          "path": "interop/sidecar-own-c/skill.md",
+          "description": "> C that belongs to the program goes in a sidecar foo.build beside foo.goose: c_sources/c_include/c_defines/c_flags/c_libs (each with platform suffixes), c_headers adapters using the generated types, dylibs mappings, and output naming. Packages use the same sidecar with cmake_target for CMake projects.",
+          "tags": [
+            "goose",
+            "sidecar",
+            "foo.build",
+            "c_sources",
+            "c_headers",
+            "cmake",
+            "dylibs",
+            "own C"
+          ],
+          "triggers": [
+            "goose sidecar",
+            "c_sources",
+            "cmake package",
+            "c_headers",
+            "foo.build",
+            "link library"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/packages.md#3-a-program-with-c-of-its-own"
+        }
+      ]
+    },
+    {
+      "category": "memory-model",
+      "group": "Core concepts",
+      "description": "The data-stack memory model: ownership, size classes, copies, in-place construction.",
+      "skill_count": 4,
+      "skills": [
+        {
+          "name": "goose-copies-and-aliasing",
+          "title": "Copies are visible — copy(), binding by reference, call semantics",
+          "path": "memory-model/copies-and-aliasing/skill.md",
+          "description": "> Fixed-size values copy silently like C; non-fixed values NEVER copy implicitly. `let b = a;` binds b to a by reference for growable arrays. `copy(a)` is the explicit O(n) copy. How this works for variables, fields, elements, and call arguments, plus the generic-code `.= for values` rule.",
+          "tags": [
+            "goose",
+            "copy",
+            "reference",
+            "aliasing",
+            "assignment",
+            "semantics"
+          ],
+          "triggers": [
+            "goose copy",
+            "goose assignment semantics",
+            "implicit copy",
+            "binds by reference",
+            "copy function"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#copies-are-visible"
+        },
+        {
+          "name": "goose-data-stacks-and-ownership",
+          "title": "The memory model — data stacks, ownership, scope exit",
+          "path": "memory-model/data-stacks-and-ownership/skill.md",
+          "description": "> Goose's entire memory system: N compiler-assigned data stacks with bump pointers, every dynamic value owned by a variable, freed en masse at scope exit, at most one resizable value live per stack, growth by pointer bump, nothing ever moves. Explains the rules and how to structure code around them.",
+          "tags": [
+            "goose",
+            "memory",
+            "ownership",
+            "stacks",
+            "scope",
+            "data-stacks"
+          ],
+          "triggers": [
+            "goose memory model",
+            "data stacks",
+            "who owns this",
+            "scope exit",
+            "no heap",
+            "bump pointer"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#4-where-values-live"
+        },
+        {
+          "name": "goose-in-place-construction",
+          "title": "In-place construction — results are built at their destination",
+          "path": "memory-model/in-place-construction/skill.md",
+          "description": "> The copy-free construction guarantee: a constructed non-fixed value is always built in its final location, through any depth of calls and through whichever branch an if/match takes. Returning a built-up value costs the same as an out-parameter; str(...) writes directly into the element being pushed. Plus the construction-in-progress restriction.",
+          "tags": [
+            "goose",
+            "construction",
+            "return-values",
+            "str",
+            "destination",
+            "no-temporaries"
+          ],
+          "triggers": [
+            "goose in place construction",
+            "return array by value",
+            "str built at destination",
+            "no temporary"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/goose_spec.md#43-the-in-place-construction-guarantee"
+        },
+        {
+          "name": "goose-size-classes-and-placement",
+          "title": "Size classes — fixed, variable, resizable, root — and what may contain what",
+          "path": "memory-model/size-classes-and-placement/skill.md",
+          "description": "> Every Goose type is fixed, variable, resizable, or root. This decides where a value may live: which fields, which array element slots, which parameter and result positions. The complete placement rules with the struct-tail and element restrictions.",
+          "tags": [
+            "goose",
+            "size-classes",
+            "structs",
+            "placement",
+            "root-struct",
+            "varint"
+          ],
+          "triggers": [
+            "goose size class",
+            "fixed variable resizable",
+            "root struct placement",
+            "what may contain what"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#size-classes"
+        }
+      ]
+    },
+    {
+      "category": "performance",
+      "group": "Tooling",
+      "description": "The performance model, bounds-check elimination, benchmarking recipes, simd/inline.",
+      "skill_count": 4,
+      "skills": [
+        {
+          "name": "goose-benchmarking",
+          "title": "Benchmarking recipes — measuring Goose the way the suite does",
+          "path": "performance/benchmarking/skill.md",
+          "description": "> How to benchmark Goose credibly: build (never JIT) for timing, whole- process wall-clock including teardown, best of three after warm-ups, os::clock() for in-process timing, --stats/--bce-lines for diagnosis, and the methodology rules the official suite follows (matching interfaces, input generation included).",
+          "tags": [
+            "goose",
+            "benchmark",
+            "timing",
+            "methodology",
+            "whole-process",
+            "clock"
+          ],
+          "triggers": [
+            "goose benchmark",
+            "time goose code",
+            "benchmark methodology",
+            "goose speed measurement"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/bench/design.md"
+        },
+        {
+          "name": "goose-bounds-check-elimination",
+          "title": "Bounds-check elimination — help the compiler prove checks away",
+          "path": "performance/bounds-check-elimination/skill.md",
+          "description": "> Every index is checked; the compiler removes checks it can prove unnecessary. What makes proofs possible (grow-only shrink points, Euclidean %, fixed sizes, assert of lengths at kernel top, index types), how to measure (--bce-lines, --stats), and checkfree fn as the contract.",
+          "tags": [
+            "goose",
+            "bounds check",
+            "bce",
+            "assert",
+            "checkfree",
+            "bce-lines",
+            "kernel"
+          ],
+          "triggers": [
+            "goose bounds check",
+            "bce",
+            "checkfree",
+            "--bce-lines",
+            "index check elided",
+            "kernel optimization"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#bounds-checks"
+        },
+        {
+          "name": "goose-performance-model",
+          "title": "The performance model — where Goose's speed comes from",
+          "path": "performance/performance-model/skill.md",
+          "description": "> Two sources of speed: the memory model (no allocator on any path, one- store teardown, contiguous data, narrow links, variable-mode enums) and compiler optimization (BCE, inlining, simd fn). The benchmark headline numbers and what they do and do not claim, plus what loses (particles, calc).",
+          "tags": [
+            "goose",
+            "performance",
+            "memory model",
+            "cache",
+            "benchmarks",
+            "teardown"
+          ],
+          "triggers": [
+            "goose performance",
+            "why goose fast",
+            "benchmark numbers",
+            "cache traffic",
+            "memory savings"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/bench/summary.md"
+        },
+        {
+          "name": "goose-simd-and-inline",
+          "title": "simd fn and inline fn — vectorization knobs",
+          "path": "performance/simd-and-inline/skill.md",
+          "description": "> simd fn builds once per instruction-set level (baseline + AVX2 + AVX-512 under clang x86-64), picking the widest version at each call, with identical output at every level. inline fn forces inlining at every call. GS_SIMD levels, the TinyCC/MSVC caveats, and mul_add's FMA behavior.",
+          "tags": [
+            "goose",
+            "simd fn",
+            "inline fn",
+            "avx2",
+            "avx512",
+            "vectorize",
+            "mul_add"
+          ],
+          "triggers": [
+            "goose simd",
+            "simd function",
+            "avx2",
+            "inline fn",
+            "vectorize loop",
+            "GS_SIMD"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#function-qualifiers"
+        }
+      ]
+    },
+    {
+      "category": "references",
+      "group": "Core concepts",
+      "description": "References and UFCS, optionals and narrowing, lifetimes/roots, relative references, const.",
+      "skill_count": 5,
+      "skills": [
+        {
+          "name": "goose-const-writability",
+          "title": "const and writability — read-only contents, slots, inference",
+          "path": "references/const-writability/skill.md",
+          "description": "> Everything is writable unless its type says otherwise. const T is a value whose contents cannot be written; writability is inferred per instantiation; parameters are generic over constness; slots (fields, elements, globals) say what they may hold. const is shallow.",
+          "tags": [
+            "goose",
+            "const",
+            "writability",
+            "read-only",
+            "const u8[:]",
+            "slots"
+          ],
+          "triggers": [
+            "goose const",
+            "read-only",
+            "const u8[:]",
+            "writability",
+            "const slice",
+            "immutable"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#writability"
+        },
+        {
+          "name": "goose-lifetimes-roots",
+          "title": "Lifetimes — roots, stores, and reading the errors",
+          "path": "references/lifetimes-roots/skill.md",
+          "description": "> Goose's entire \"borrow checker\" is one rule: a reference must not outlive the variable that owns its target, and must never observe its target at a wrong type. No annotations, no exclusivity. Roots are inferred and functions are specialized per root. The store/return/branches/rebinding/ temporary/holder rules, and how to read the two-ended error messages.",
+          "tags": [
+            "goose",
+            "lifetime",
+            "borrow checker",
+            "root",
+            "stores",
+            "holders",
+            "errors"
+          ],
+          "triggers": [
+            "goose lifetime",
+            "borrow checker",
+            "root variable",
+            "reference outlives",
+            "lifetime error"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#12-lifetimes-roots-stores-and-writability"
+        },
+        {
+          "name": "goose-optionals-and-narrowing",
+          "title": "Optionals — T?, null, and narrowing with if/while/guard/assert",
+          "path": "references/optionals-and-narrowing/skill.md",
+          "description": "> T? is a nullable reference with no space cost (null is address 0). It is not transparent: narrow it with if/while/guard/assert or a comparison with null; inside the narrowed region it IS a T&. Covers rebinding semantics, while-loops over linked lists, and the null-returning library idioms.",
+          "tags": [
+            "goose",
+            "optional",
+            "nullable",
+            "null",
+            "narrowing",
+            "T?"
+          ],
+          "triggers": [
+            "goose optional",
+            "goose null",
+            "nullable reference",
+            "narrowing",
+            "T?",
+            "guard null"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#optionals"
+        },
+        {
+          "name": "goose-references-and-ufcs",
+          "title": "References — transparent, .= binding, &x, UFCS method syntax",
+          "path": "references/references-and-ufcs/skill.md",
+          "description": "> T& is a machine address with no arithmetic and no way to dangle. References are transparent (behave as their target everywhere; no * or ->). .= binds/rebinds a reference itself, .== compares addresses. &x makes a reference; reference destinations bind without &. UFCS: x.f(a) calls f(x, a).",
+          "tags": [
+            "goose",
+            "references",
+            "ufcs",
+            "transparent",
+            "rebind",
+            ".equals"
+          ],
+          "triggers": [
+            "goose reference",
+            "T&",
+            ".= operator",
+            ".== identity",
+            "method syntax",
+            "free functions"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#10-references-and-optionals"
+        },
+        {
+          "name": "goose-relative-references",
+          "title": "Relative references — narrow links, pool-relative, and `self`",
+          "path": "references/relative-references/skill.md",
+          "description": "> A relative reference stores a link as a narrow offset (u8/u16/u32/u64/ varint) instead of an 8-byte address. Self-relative (same array, position-independent, serializable) vs pool-relative (T&<u32 in pool>, other arrays can link in). T&<u32>? makes offset 0 the null. self builds sentinels; copying rules for values holding self-relative links.",
+          "tags": [
+            "goose",
+            "relative reference",
+            "links",
+            "pool",
+            "self",
+            "sentinel",
+            "serialization"
+          ],
+          "triggers": [
+            "goose relative reference",
+            "T&<u32>",
+            "in pool",
+            "self initializer",
+            "narrow links",
+            "linked list"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#11-relative-references"
+        }
+      ]
+    },
+    {
+      "category": "stdlib",
+      "group": "Working with data",
+      "description": "The standard library module by module: std, dictionary, vec/mat/quat, math, os, binary/base64, json, csv/regex.",
+      "skill_count": 8,
+      "skills": [
+        {
+          "name": "goose-binary-base64",
+          "title": "binary and base64 modules — external binary formats, checked reads",
+          "path": "stdlib/binary-base64/skill.md",
+          "description": "> binary gives checked reads and appending writes of external formats, little- and big-endian, at offsets or with a cursor Reader and bounded subreaders; returned byte slices borrow the input. base64 is RFC 4648 standard alphabet encode/decode into a builder.",
+          "tags": [
+            "goose",
+            "binary",
+            "base64",
+            "endian",
+            "reader",
+            "write_u32le",
+            "encode decode"
+          ],
+          "triggers": [
+            "goose binary format",
+            "read u32le",
+            "little endian",
+            "big endian",
+            "base64 encode decode"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/stdlib.md#binary"
+        },
+        {
+          "name": "goose-csv-regex",
+          "title": "csv and regex modules — RFC 4180 records, Rust-regex-style matching",
+          "path": "stdlib/csv-regex/skill.md",
+          "description": "> csv::each_record streams RFC 4180 records as zero-copy field slices with full quoting support; csv::format_field quotes where needed. regex has Rust-regex syntax and leftmost-first matching, complete DFAs compiled up front, find/matches/count/each_match/each_captures/format_replaced, with the supported syntax and known limits.",
+          "tags": [
+            "goose",
+            "csv",
+            "regex",
+            "each_record",
+            "format_field",
+            "compile",
+            "captures",
+            "each_match"
+          ],
+          "triggers": [
+            "goose csv",
+            "goose regex",
+            "parse csv",
+            "regex find",
+            "regex captures",
+            "format_replaced"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/stdlib.md#csv"
+        },
+        {
+          "name": "goose-dictionary",
+          "title": "dictionary — the hash map (and set)",
+          "path": "stdlib/dictionary/skill.md",
+          "description": "> dictionary<K, V> is an open-addressing map with linear probing, power-of- two capacity, backward-shift deletion and 31-bit hash tags per slot. Keys need hash + ==; string keys are const u8[:] views (nothing copied). get/ insert/get_or_insert/update/remove/each/reserve, and the shrink rule for references into the slot array.",
+          "tags": [
+            "goose",
+            "dictionary",
+            "hashmap",
+            "hash set",
+            "keys",
+            "update",
+            "get_or_insert"
+          ],
+          "triggers": [
+            "goose dictionary",
+            "goose map",
+            "hash table",
+            "dictionary get insert update",
+            "string keys"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/stdlib.md#dictionary"
+        },
+        {
+          "name": "goose-json",
+          "title": "json module — writer, tree parser, and streaming reader onto your types",
+          "path": "stdlib/json/skill.md",
+          "description": "> JSON three ways: a writer appending values to a builder; a parser building a document tree (Node[>..] with relative links; keys are slices of the text, escapes decoded into a scratch builder); and a zero-build Reader mapping text directly onto the caller's types, serde-derive style, with sticky errors.",
+          "tags": [
+            "goose",
+            "json",
+            "parse",
+            "writer",
+            "reader",
+            "tree",
+            "serde"
+          ],
+          "triggers": [
+            "goose json",
+            "json parse",
+            "json writer",
+            "json reader",
+            "format_key",
+            "json each_member"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/stdlib.md#json"
+        },
+        {
+          "name": "goose-math-module",
+          "title": "math module — libm at both widths, constants, helpers",
+          "path": "stdlib/math-module/skill.md",
+          "description": "> math provides libm at both widths (sin picks sin/sinf by argument type), the constants PI/TAU/E/INF/NAN that adapt to context, helpers (radians, is_nan, is_finite, fract, inverse_lerp, smoothstep, wrap_angle), and mul_add with its FMA caveats (cancellation and overflow differences vs x*y+z).",
+          "tags": [
+            "goose",
+            "math",
+            "libm",
+            "sqrt",
+            "PI",
+            "mul_add",
+            "fma",
+            "smoothstep"
+          ],
+          "triggers": [
+            "goose math module",
+            "goose sqrt",
+            "PI constant",
+            "mul_add",
+            "fma",
+            "is_nan",
+            "smoothstep"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/stdlib.md#math"
+        },
+        {
+          "name": "goose-os-module",
+          "title": "os module — files, args, env, time, stdin, resources",
+          "path": "stdlib/os-module/skill.md",
+          "description": "> A small interface to the runtime's OS layer: whole-file read/write (including atomic write), directory listing, stdin/stdout, args()/env(), time/clock/sleep, random_seed, trim_memory, and resource_dir() for application assets. Paths are UTF-8; no subprocesses or networking in v1.",
+          "tags": [
+            "goose",
+            "os",
+            "files",
+            "read_file",
+            "write_file",
+            "args",
+            "env",
+            "time",
+            "resource_dir",
+            "stdin"
+          ],
+          "triggers": [
+            "goose file io",
+            "goose args",
+            "goose environment variable",
+            "goose time",
+            "resource dir",
+            "read stdin"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/stdlib.md#os"
+        },
+        {
+          "name": "goose-std-algorithms",
+          "title": "std module — array algorithms, sorting, hashing, rng",
+          "path": "stdlib/std-algorithms/skill.md",
+          "description": "> The std module: HOF algorithms (map/filter/fold built in place), searching (find/find_index/position/binary_search/lower_bound), in-place transforms (sort pdqsort, stable_sort merge), length changes (insert_at/remove_at/ swap_remove/retain/dedup/heap_*), hashing (hash/hash_combine, user key types), and splitmix64 rng.",
+          "tags": [
+            "goose",
+            "std",
+            "map",
+            "filter",
+            "fold",
+            "sort",
+            "find",
+            "heap",
+            "hash",
+            "rng",
+            "shuffle"
+          ],
+          "triggers": [
+            "goose std module",
+            "goose sort",
+            "goose filter map",
+            "goose find",
+            "hash function",
+            "random numbers"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/stdlib.md#std"
+        },
+        {
+          "name": "goose-vec-mat-quat",
+          "title": "vec, mat, quat — the numeric geometry modules",
+          "path": "stdlib/vec-mat-quat/skill.md",
+          "description": "> vec2/3/4<T> generic vectors (float2/3/4, double*, int* aliases) with language memberwise operators; mat as column-major GLSL matrices with transform builders (translate/rotate/perspective/ortho/look_at, right- handed, depth 0..1); quat rotations with angle_axis/slerp/from_euler and mat conversions; compose() builds model matrices.",
+          "tags": [
+            "goose",
+            "vec2",
+            "vec3",
+            "mat4",
+            "quaternion",
+            "glsl",
+            "transform",
+            "graphics math"
+          ],
+          "triggers": [
+            "goose vec3",
+            "goose mat4",
+            "goose quaternion",
+            "float3",
+            "transform matrix",
+            "slerp"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/stdlib.md#vec"
+        }
+      ]
+    },
+    {
+      "category": "strings",
+      "group": "Core concepts",
+      "description": "Strings as byte arrays, formatting text, zero-copy parsing and manipulation.",
+      "skill_count": 3,
+      "skills": [
+        {
+          "name": "goose-formatting-text",
+          "title": "Formatting text — print/format/str and the format overload",
+          "path": "strings/formatting-text/skill.md",
+          "description": "> The three rendering builtins (print, format, str) take any number of arguments of any type with no format string. A fn format(out: u8[>..]&, v: T) overload defines a type's text form once. Controlled output via std's format_int/format_uint/format_flt, plus float printing rules.",
+          "tags": [
+            "goose",
+            "print",
+            "format",
+            "str",
+            "format overload",
+            "rendering",
+            "format_int",
+            "format_flt"
+          ],
+          "triggers": [
+            "goose print",
+            "goose format",
+            "goose str",
+            "custom print",
+            "format overload",
+            "number formatting"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#rendering-text"
+        },
+        {
+          "name": "goose-parsing-text",
+          "title": "Parsing and manipulating text — split/trim/find/parse_int, zero-copy",
+          "path": "strings/parsing-text/skill.md",
+          "description": "> std's text functions operate on u8[:] views: nothing is copied. split returns slices into the input, split_once is strings.Cut, words splits at whitespace, parse_int/parse_uint/parse_flt return (value, ok), compare is bytewise, each_utf8/push_utf8 handle code points, ascii:: character classes.",
+          "tags": [
+            "goose",
+            "split",
+            "trim",
+            "find",
+            "parse_int",
+            "parse_flt",
+            "compare",
+            "utf8",
+            "zero-copy"
+          ],
+          "triggers": [
+            "goose split",
+            "goose parse_int",
+            "goose trim",
+            "goose find",
+            "string search",
+            "goose words"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/stdlib.md#strings"
+        },
+        {
+          "name": "goose-strings-as-byte-arrays",
+          "title": "Strings are byte arrays — four roles, no string type",
+          "path": "strings/strings-as-byte-arrays/skill.md",
+          "description": "> There is no string type: a string is any array-family type with u8 elements. u8[>..] builder, u8[] finished, u8[..16] inline, u8[:] view. String literals are const u8[:] static data. Raw \"\"\" strings, UTF-8 as a library convention, and the inline-string-in-struct pattern.",
+          "tags": [
+            "goose",
+            "strings",
+            "u8",
+            "builder",
+            "utf8",
+            "raw strings"
+          ],
+          "triggers": [
+            "goose string",
+            "u8 array string",
+            "goose text",
+            "raw string",
+            "triple quote",
+            "utf-8"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#6-strings-and-text"
+        }
+      ]
+    },
+    {
+      "category": "tooling",
+      "group": "Tooling",
+      "description": "The goose CLI, run vs build, diagnostics, packages, editors/LSP, compiler internals, testing.",
+      "skill_count": 8,
+      "skills": [
+        {
+          "name": "goose-cli-reference",
+          "title": "CLI reference — every goose command and option",
+          "path": "tooling/cli-reference/skill.md",
+          "description": "> The complete goose command surface: run/build/check/fetch/format/lsp/ toolchain/version/completion/help; shared options (-O0..-O2, --debug, -D, --stack-reserve, --stacks, --bce-lines, --specs, --stats, --diagnostics json, --offline); runtime -D macros; environment variables; exit codes; and the compiler-internals flags.",
+          "tags": [
+            "goose",
+            "cli",
+            "commands",
+            "options",
+            "goose build",
+            "goose check",
+            "diagnostics",
+            "env vars"
+          ],
+          "triggers": [
+            "goose command line",
+            "goose cli",
+            "goose options",
+            "--diagnostics json",
+            "--stats",
+            "goose completion"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/command_line.md"
+        },
+        {
+          "name": "goose-compiler-internals",
+          "title": "Compiler internals — whole-program model, specialization, generated C",
+          "path": "tooling/compiler-internals/skill.md",
+          "description": "> Goose compiles the whole program (closed world) in call-graph order: it computes the data stacks, specializes functions per root/constness/ types, generates C, and links a once-compiled runtime. What agents should know: no separate compilation, static function values, the roots analysis, BCE, --specs/--dump inspection, and the goose-in-goose self-hosting bootstrap.",
+          "tags": [
+            "goose",
+            "compiler internals",
+            "whole program",
+            "monomorphization",
+            "generated c",
+            "runtime",
+            "emit-runtime"
+          ],
+          "triggers": [
+            "goose compiler internals",
+            "how goose compiler works",
+            "generated c",
+            "specialization",
+            "runtime object"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/implementation.md"
+        },
+        {
+          "name": "goose-diagnostics",
+          "title": "Compiler diagnostics — reading errors, JSON output, stats",
+          "path": "tooling/diagnostics/skill.md",
+          "description": "> How the compiler reports problems: stderr with source line and caret, both-ends error messages (reference + binding site, holder + store site, instantiation + call chain), --diagnostics json shape for tools, --stats and --bce-lines output, color control, and where progress notes go.",
+          "tags": [
+            "goose",
+            "errors",
+            "warnings",
+            "diagnostics json",
+            "instantiation chain",
+            "stats"
+          ],
+          "triggers": [
+            "goose error format",
+            "diagnostics json",
+            "instantiation chain",
+            "compiler output",
+            "bce lines"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/command_line.md#6-what-goose-prints"
+        },
+        {
+          "name": "goose-editors-lsp-format",
+          "title": "Editors, the language server, and goose format",
+          "path": "tooling/editors-lsp-format/skill.md",
+          "description": "> The compiler is its own language server (goose lsp over stdio): diagnostics as you type, hover, go-to-def, references, rename, semantic tokens, inlay hints, code lenses with instantiation counts and Run. VS Code extension; Neovim/Helix/Emacs configs; entryFiles initialization option; goose format rules and format-on-save per editor.",
+          "tags": [
+            "goose",
+            "lsp",
+            "vscode",
+            "neovim",
+            "helix",
+            "emacs",
+            "formatter",
+            "goose format"
+          ],
+          "triggers": [
+            "goose editor",
+            "goose lsp",
+            "goose vscode",
+            "goose neovim",
+            "goose format",
+            "format on save"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/editors.md"
+        },
+        {
+          "name": "goose-making-a-package",
+          "title": "Making and publishing a Goose package",
+          "path": "tooling/making-a-package/skill.md",
+          "description": "> Package layout (entry module with the package's namespace), the requirement rule for a library's own dependencies, examples and tests as root files, extern blocks for machine libraries, embed_file for shipped data, and the publish workflow (push, tag, tell users the import line).",
+          "tags": [
+            "goose",
+            "package authoring",
+            "publishing",
+            "namespace",
+            "entry file",
+            "examples",
+            "testing"
+          ],
+          "triggers": [
+            "make a goose package",
+            "publish library",
+            "package layout",
+            "namespace convention"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/packages.md#4-making-a-package"
+        },
+        {
+          "name": "goose-packages",
+          "title": "Packages — declaring, fetching, pinning dependencies",
+          "path": "tooling/packages/skill.md",
+          "description": "> import name from \"owner/repo@v1\"; (or a directory) declares a package in the program's root file. Only the root declares; other files' declarations are requirements the root must satisfy. Tags/commits pin; branches need --update. goose fetch pre-fetches; --offline forbids fetching. The ~/.goose cache layout.",
+          "tags": [
+            "goose",
+            "packages",
+            "dependencies",
+            "git",
+            "import from",
+            "fetch",
+            "root file"
+          ],
+          "triggers": [
+            "goose package",
+            "import from github",
+            "goose fetch",
+            "dependency pinning",
+            "pkg cache"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/packages.md#2-using-a-package"
+        },
+        {
+          "name": "goose-run-build-backends",
+          "title": "run vs build — the two backends and when each works",
+          "path": "tooling/run-build-backends/skill.md",
+          "description": "> goose run compiles to C and runs it in-process via TinyCC (no files, no C compiler needed beyond libc headers); goose build uses a real C compiler (optimized -O2 C, executables beside the source). What each can and cannot do: threads need a build, extern symbols resolve differently, timing needs a build, --debug for checked builds.",
+          "tags": [
+            "goose",
+            "jit",
+            "tcc",
+            "tinycc",
+            "build",
+            "debug",
+            "backend",
+            "in-process"
+          ],
+          "triggers": [
+            "goose run vs build",
+            "tinycc",
+            "jit backend",
+            "goose --debug",
+            "backend limits"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/command_line.md#2-running-a-program"
+        },
+        {
+          "name": "goose-testing-debugging",
+          "title": "Testing and debugging Goose programs",
+          "path": "tooling/testing-debugging/skill.md",
+          "description": "> How to test and debug Goose code: assert-based tests with panic-style aborts, --debug builds that name failing checks and values, clean runtime abort messages with source lines, GS_DEBUG/GS_STACK_STATS knobs, --multi- test for batch-checking files, and the repo's own test suite conventions (expected output, // error: markers).",
+          "tags": [
+            "goose",
+            "testing",
+            "debugging",
+            "assert",
+            "debug build",
+            "aborts",
+            "expected output"
+          ],
+          "triggers": [
+            "goose testing",
+            "debug goose program",
+            "assert testing",
+            "GS_DEBUG",
+            "abort message",
+            "multi-test"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/command_line.md"
+        }
+      ]
+    },
+    {
+      "category": "types",
+      "group": "Core concepts",
+      "description": "Scalars and arithmetic, casts, structs, enums/ADTs, aliases and constants.",
+      "skill_count": 5,
+      "skills": [
+        {
+          "name": "goose-aliases-and-named-constants",
+          "title": "Type aliases and named constants",
+          "path": "types/aliases-and-named-constants/skill.md",
+          "description": "> `type Name = T;` is the same type, not a new one. A `let`/`const` global with a constant initializer is a named constant that adapts like a literal: usable as any integer type it fits, an array size, a fill count, or a match arm.",
+          "tags": [
+            "goose",
+            "type-alias",
+            "named-constant",
+            "let-global",
+            "adapt"
+          ],
+          "triggers": [
+            "goose type alias",
+            "named constant",
+            "let SIZE",
+            "constant expression",
+            "array size"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#type-aliases"
+        },
+        {
+          "name": "goose-casts-and-conversions",
+          "title": "Casts and conversions — implicit widening, `as`, `as!`",
+          "path": "types/casts-and-conversions/skill.md",
+          "description": "> What converts implicitly (widening, int→float), what needs `as` (debug range-checked) or `as!` (never checked), float↔integer conversion rules, redundant-cast warnings, and comparisons with u64.",
+          "tags": [
+            "goose",
+            "cast",
+            "conversion",
+            "as",
+            "narrowing",
+            "warnings"
+          ],
+          "triggers": [
+            "goose cast",
+            "goose as",
+            "goose as!",
+            "narrowing conversion",
+            "redundant cast warning"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#conversions"
+        },
+        {
+          "name": "goose-enums-adts",
+          "title": "Enums (ADTs) — two storage modes, match, case functions",
+          "path": "types/enums-adts/skill.md",
+          "description": "> Enums are the only dynamic polymorphism in Goose (no inheritance, traits or vtables). Every ADT can be stored fixed-mode (indexable, replaceable) or variable-mode (packed, pointable-into). match arms, &-binders, integer matches, and case functions (one overload per variant — the virtual-call idiom without a vtable).",
+          "tags": [
+            "goose",
+            "enum",
+            "adt",
+            "match",
+            "variable-mode",
+            "fixed-mode",
+            "case-functions",
+            "polymorphism"
+          ],
+          "triggers": [
+            "goose enum",
+            "algebraic data type",
+            "Shape..",
+            "variable mode enum",
+            "match syntax",
+            "case functions",
+            "virtual dispatch"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#9-enums-algebraic-data-types"
+        },
+        {
+          "name": "goose-scalars-and-arithmetic",
+          "title": "Scalars, numeric literals, and the arithmetic rules",
+          "path": "types/scalars-and-arithmetic/skill.md",
+          "description": "> Integer and float types, width rules (\"arithmetic happens at the operands' own width\"), literal adaptation, the unification rules for mixed operands, Euclidean %, truncating /, overflow behavior per build, bitwise operators, memberwise arithmetic on structs, and the varint storage type.",
+          "tags": [
+            "goose",
+            "integers",
+            "floats",
+            "literals",
+            "arithmetic",
+            "overflow",
+            "euclidean",
+            "varint",
+            "bitwise"
+          ],
+          "triggers": [
+            "goose int types",
+            "goose float",
+            "euclidean modulo",
+            "u8 arithmetic",
+            "signed overflow",
+            "varint",
+            "literal adapts"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#3-scalars-and-arithmetic"
+        },
+        {
+          "name": "goose-structs",
+          "title": "Structs — literals, field defaults, qualifiers, generic structs",
+          "path": "types/structs/skill.md",
+          "description": "> Struct declarations introduce nominal types; fields are packed with no padding. Literals by name or position, `..` for defaults, field defaults evaluated per construction, let/const/pad field qualifiers, variable-size and varint fields, the one resizable tail, root structs, generic structs, equality and memberwise arithmetic.",
+          "tags": [
+            "goose",
+            "struct",
+            "literal",
+            "defaults",
+            "pad",
+            "generic",
+            "nominal-types"
+          ],
+          "triggers": [
+            "goose struct",
+            "struct literal",
+            "field default",
+            "pad field",
+            "generic struct",
+            "nominal type"
+          ],
+          "source": "https://github.com/aardappel/goose/blob/main/docs/reference.md#8-structs"
+        }
+      ]
+    }
+  ]
+}
